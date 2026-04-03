@@ -7,7 +7,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root {
+:root{
   --bg:#080c10;--bg2:#0d1219;--bg3:#121820;
   --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);
   --accent:#00e5a0;--accent2:#00b8ff;--accent3:#ff6b35;
@@ -22,7 +22,6 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .orb1{top:-15%;right:-8%;width:650px;height:650px;background:radial-gradient(circle,rgba(0,229,160,0.06) 0%,transparent 70%);}
 .orb2{bottom:-15%;left:-8%;width:550px;height:550px;background:radial-gradient(circle,rgba(0,184,255,0.05) 0%,transparent 70%);}
 
-/* HEADER */
 header{position:relative;z-index:10;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);backdrop-filter:blur(20px);background:rgba(8,12,16,0.85);}
 .logo{display:flex;align-items:center;gap:12px;}
 .logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 0 18px rgba(0,229,160,0.35);}
@@ -33,7 +32,7 @@ header{position:relative;z-index:10;padding:18px 40px;display:flex;align-items:c
 .hb.live{border-color:var(--accent);color:var(--accent);animation:blink 2s infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.45}}
 
-/* API BANNER */
+/* API KEY BANNER */
 #apiBanner{position:relative;z-index:9;background:linear-gradient(90deg,rgba(0,184,255,0.07),rgba(0,229,160,0.07));border-bottom:1px solid rgba(0,184,255,0.18);padding:11px 40px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
 .ab-text{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted2);white-space:nowrap;}
 .ab-text strong{color:var(--accent2);}
@@ -41,7 +40,7 @@ header{position:relative;z-index:10;padding:18px 40px;display:flex;align-items:c
 #keyInput{flex:1;background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:7px 12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text);outline:none;transition:border 0.2s;}
 #keyInput:focus{border-color:var(--accent2);}
 #keyInput::placeholder{color:var(--muted);}
-.ab-save{padding:7px 16px;background:var(--accent2);border:none;border-radius:8px;color:#000;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:opacity 0.2s;}
+.ab-save{padding:7px 16px;background:var(--accent2);border:none;border-radius:8px;color:#000;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;}
 .ab-save:hover{opacity:0.82;}
 .ab-link{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);text-decoration:none;white-space:nowrap;}
 .ab-link:hover{text-decoration:underline;}
@@ -49,17 +48,14 @@ header{position:relative;z-index:10;padding:18px 40px;display:flex;align-items:c
 #keyStatus.ok{background:rgba(0,229,160,0.1);color:var(--accent);border:1px solid rgba(0,229,160,0.3);}
 #keyStatus.no{background:rgba(255,71,87,0.1);color:var(--red);border:1px solid rgba(255,71,87,0.3);}
 
-/* MAIN */
 main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40px 80px;}
 
-/* HERO */
 .hero{text-align:center;margin-bottom:44px;}
 .hero-pill{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;padding:5px 15px;border:1px solid rgba(0,229,160,0.2);border-radius:20px;background:rgba(0,229,160,0.05);}
 .hero-title{font-size:clamp(34px,5vw,62px);font-weight:800;line-height:1.06;letter-spacing:-2px;margin-bottom:12px;}
 .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero-sub{font-size:15px;color:var(--muted2);line-height:1.65;max-width:500px;margin:0 auto 28px;}
+.hero-sub{font-size:15px;color:var(--muted2);line-height:1.65;max-width:520px;margin:0 auto 28px;}
 
-/* SEARCH */
 .search-box{position:relative;max-width:680px;margin:0 auto;}
 .search-inner{display:flex;align-items:center;gap:10px;background:var(--bg2);border:1.5px solid var(--border2);border-radius:14px;padding:5px 5px 5px 18px;transition:all 0.25s;}
 .search-inner:focus-within{border-color:var(--accent);box-shadow:0 0 36px rgba(0,229,160,0.1),0 0 0 3px rgba(0,229,160,0.07);}
@@ -73,8 +69,7 @@ main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40p
 .go-btn{padding:9px 22px;background:linear-gradient(135deg,var(--accent),#00c87a);border:none;border-radius:9px;color:#000;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;flex-shrink:0;}
 .go-btn:hover{transform:translateY(-1px);box-shadow:0 4px 18px rgba(0,229,160,0.38);}
 
-/* AUTOCOMPLETE */
-.ac{position:absolute;top:calc(100%+8px);left:0;right:0;background:var(--bg2);border:1px solid var(--border2);border-radius:14px;overflow:hidden;box-shadow:0 18px 55px rgba(0,0,0,0.55);z-index:999;display:none;}
+.ac{position:absolute;top:calc(100% + 8px);left:0;right:0;background:var(--bg2);border:1px solid var(--border2);border-radius:14px;overflow:hidden;box-shadow:0 18px 55px rgba(0,0,0,0.55);z-index:999;display:none;}
 .ac.open{display:block;}
 .aci{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;cursor:pointer;border-bottom:1px solid var(--border);transition:background 0.12s;}
 .aci:last-child{border-bottom:none;}
@@ -92,7 +87,6 @@ main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40p
 .src-note{max-width:680px;margin:10px auto 0;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);}
 .src-note em{color:var(--accent2);font-style:normal;}
 
-/* LOADING */
 .loading{display:none;text-align:center;padding:56px 20px;}
 .loading.show{display:block;}
 .ring{width:52px;height:52px;border:3px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin 0.75s linear infinite;margin:0 auto 18px;}
@@ -103,20 +97,17 @@ main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40p
 .step.act{opacity:1;color:var(--muted2);}
 .step.ok{opacity:1;color:var(--accent);}
 
-/* ERROR */
 .err-box{display:none;text-align:center;padding:56px 20px;}
 .err-box.show{display:block;}
 .err-ico{font-size:44px;margin-bottom:14px;}
 .err-title{font-size:20px;font-weight:700;color:var(--red);margin-bottom:8px;}
 .err-msg{color:var(--muted2);font-size:14px;max-width:520px;margin:0 auto 14px;line-height:1.6;}
-.err-hint{display:inline-block;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:12px 18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted2);text-align:left;max-width:520px;line-height:1.8;}
+.err-hint{display:inline-block;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:12px 18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted2);text-align:left;max-width:520px;line-height:1.8;white-space:pre-wrap;}
 
-/* RESULTS */
 #results{display:none;}
 #results.show{display:block;animation:fadeUp 0.45s ease;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
-/* STOCK HEADER */
 .stk-hdr{background:var(--bg2);border:1px solid var(--border2);border-radius:18px;padding:26px 30px;margin-bottom:22px;display:flex;align-items:flex-start;justify-content:space-between;gap:22px;flex-wrap:wrap;position:relative;overflow:hidden;}
 .stk-hdr::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
 .tk-row{display:flex;align-items:center;gap:10px;margin-bottom:4px;}
@@ -133,7 +124,6 @@ main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40p
 .chg.up{color:var(--accent);background:rgba(0,229,160,0.1);}
 .chg.dn{color:var(--red);background:rgba(255,71,87,0.1);}
 
-/* STATS */
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px;}
 .sc{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:18px;transition:all 0.18s;}
 .sc:hover{border-color:var(--border2);background:rgba(255,255,255,0.04);}
@@ -141,11 +131,9 @@ main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40p
 .sc-val{font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:600;}
 .sc-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted2);margin-top:3px;}
 
-/* SECTION TITLE */
 .sec{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted2);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
 .sec::after{content:'';flex:1;height:1px;background:var(--border);}
 
-/* CHART */
 .chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:22px;margin-bottom:22px;}
 .chart-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;}
 .chart-lbl{font-size:15px;font-weight:700;}
@@ -154,7 +142,6 @@ main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40p
 .rb.on{background:var(--bg2);color:var(--text);font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,0.3);}
 .chart-wrap{position:relative;height:290px;}
 
-/* PREDICTIONS */
 .pred-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px;}
 .pc{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:22px 18px;transition:all 0.28s;position:relative;overflow:hidden;cursor:pointer;}
 .pc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;opacity:0;transition:opacity 0.28s;}
@@ -183,7 +170,6 @@ main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40p
 .d365 .cf-fill{background:var(--accent3);}
 .pnote{font-size:11px;color:var(--muted2);line-height:1.5;padding-top:11px;border-top:1px solid var(--border);margin-top:11px;}
 
-/* ANALYSIS */
 .ai-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:26px;margin-bottom:22px;}
 .ai-hdr{display:flex;align-items:center;gap:11px;margin-bottom:22px;}
 .ai-pill{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1px;color:var(--accent);background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.2);padding:5px 13px;border-radius:18px;}
@@ -201,11 +187,6 @@ main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40p
 .i-val.bear{color:var(--red);}
 .i-val.neut{color:var(--warn);}
 
-/* CREDITS INFO */
-.credits-note{display:flex;align-items:center;gap:10px;background:rgba(0,184,255,0.05);border:1px solid rgba(0,184,255,0.15);border-radius:10px;padding:10px 16px;margin-bottom:22px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted2);}
-.credits-note em{color:var(--accent2);font-style:normal;}
-
-/* DISCLAIMER */
 .disclaimer{background:rgba(255,215,61,0.04);border:1px solid rgba(255,215,61,0.18);border-radius:12px;padding:14px 18px;display:flex;gap:11px;margin-top:22px;}
 .disc-txt{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,215,61,0.65);line-height:1.7;}
 .disc-txt strong{color:var(--warn);display:block;margin-bottom:3px;}
@@ -219,69 +200,44 @@ main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40p
   .stk-hdr{flex-direction:column;}
   .price-right{text-align:left;}
 }
-@media(max-width:580px){
-  .pred-grid{grid-template-columns:1fr 1fr;}
-  .mkt-tabs{display:none;}
-  .hero-title{font-size:30px;}
-}
-::-webkit-scrollbar{width:5px;}
-::-webkit-scrollbar-track{background:var(--bg);}
-::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+@media(max-width:580px){.pred-grid{grid-template-columns:1fr 1fr;}.mkt-tabs{display:none;}.hero-title{font-size:30px;}}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
 </style>
 </head>
 <body>
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
+<div class="orb orb1"></div><div class="orb orb2"></div>
 
-<!-- HEADER -->
 <header>
-  <div class="logo">
-    <div class="logo-icon">📈</div>
-    <div class="logo-text">Market<em>PulseAI</em></div>
-  </div>
+  <div class="logo"><div class="logo-icon">📈</div><div class="logo-text">MarketPulse<em> AI</em></div></div>
   <div class="hbadges">
     <span class="hb live">● LIVE</span>
     <span class="hb">NSE · BSE · US</span>
-    <span class="hb">Twelve Data</span>
+    <span class="hb">Claude AI</span>
   </div>
 </header>
 
-<!-- API KEY BANNER -->
 <div id="apiBanner">
-  <div class="ab-text"><strong>Twelve Data API Key</strong> — Free, 800 credits/day, NSE + BSE + US</div>
+  <div class="ab-text"><strong>Anthropic API Key</strong> — Powers live data lookup + AI analysis for all markets</div>
   <div class="ab-wrap">
-    <input id="keyInput" type="password" placeholder="Paste your Twelve Data API key…" autocomplete="off"/>
+    <input id="keyInput" type="password" placeholder="Paste your Anthropic API key (sk-ant-...)"/>
     <button class="ab-save" onclick="saveKey()">Save</button>
   </div>
-  <a class="ab-link" href="https://twelvedata.com/register" target="_blank">→ Get free key (30 sec)</a>
+  <a class="ab-link" href="https://console.anthropic.com/keys" target="_blank">→ Get key at console.anthropic.com</a>
   <span id="keyStatus" class="no">⚠ Key not set</span>
 </div>
 
-<!-- SANDBOX WARNING -->
-<div id="sandboxNote" style="position:relative;z-index:8;background:rgba(255,107,53,0.08);border-bottom:1px solid rgba(255,107,53,0.2);padding:9px 40px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-  <span style="font-size:14px">⚠️</span>
-  <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,107,53,0.9);">
-    <strong style="color:#ff6b35">Sandboxed preview:</strong> API calls may be blocked here. For live data, 
-    <strong>download the file → rename to index.html → drag into <a href="https://app.netlify.com/drop" target="_blank" style="color:#00b8ff">app.netlify.com/drop</a></strong> 
-    — takes 60 seconds, works perfectly.
-  </span>
-</div>
-  <!-- HERO -->
+<main>
   <div class="hero">
-    <div class="hero-pill">⚡ Powered by Twelve Data — NSE · BSE · Global</div>
-    <h1 class="hero-title">
-      Predict the Market<br>
-      <span class="grad">Before It Moves</span>
-    </h1>
+    <div class="hero-pill">⚡ Claude AI — Live NSE · BSE · US · Global Markets</div>
+    <h1 class="hero-title">Predict the Market<br><span class="grad">Before It Moves</span></h1>
     <p class="hero-sub">
-      Real-time prices &amp; 1-year OHLCV history via <strong>Twelve Data's free API</strong> —
-      fully supports NSE India, BSE, NASDAQ, NYSE and 50+ global exchanges. Direct browser calls, no proxy.
+      Uses <strong>Claude AI with web search</strong> to fetch real live stock prices and historical data for
+      NSE India, BSE, NASDAQ, NYSE — any exchange worldwide. No CORS issues. No third-party data limits.
     </p>
-
     <div class="search-box">
       <div class="search-inner">
         <span class="s-icon">🔍</span>
-        <input type="text" id="sInput" placeholder="Search: RELIANCE, TCS, SBIN, AAPL, TSLA…" autocomplete="off"/>
+        <input type="text" id="sInput" placeholder="Search: RELIANCE, TCS, SBIN, AAPL, TSLA, NVDA…" autocomplete="off"/>
         <div class="mkt-tabs">
           <button class="mt on" data-m="ALL">ALL</button>
           <button class="mt" data-m="NSE">NSE</button>
@@ -292,7 +248,6 @@ main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40p
       </div>
       <div class="ac" id="ac"></div>
     </div>
-
     <div class="popular">
       <span class="pop-lbl">POPULAR:</span>
       <span class="pop-chip" onclick="pick('RELIANCE','NSE')">RELIANCE</span>
@@ -304,24 +259,22 @@ main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40p
       <span class="pop-chip" onclick="pick('TSLA','US')">TSLA</span>
     </div>
     <div class="src-note">
-      Data: <em>Twelve Data API</em> · NSE → symbol=RELIANCE&amp;exchange=NSE · BSE → exchange=BSE · US → symbol=AAPL · 800 free credits/day (1 credit per call)
+      Powered by <em>Claude AI with web_search</em> · Fetches live data from the web for any exchange · No external API limits
     </div>
   </div>
 
-  <!-- LOADING -->
   <div class="loading" id="loading">
     <div class="ring"></div>
-    <div class="load-lbl" id="loadLbl">CONNECTING TO TWELVE DATA…</div>
+    <div class="load-lbl" id="loadLbl">SEARCHING LIVE MARKET DATA…</div>
     <div class="steps">
-      <div class="step" id="s1">▸ Fetching live quote (direct → proxy fallback)</div>
-      <div class="step" id="s2">▸ Downloading 1-year daily OHLCV</div>
+      <div class="step" id="s1">▸ Fetching live quote via web search</div>
+      <div class="step" id="s2">▸ Retrieving historical price data</div>
       <div class="step" id="s3">▸ Computing RSI · MACD · Bollinger</div>
       <div class="step" id="s4">▸ Running prediction model</div>
       <div class="step" id="s5">▸ Generating AI analysis</div>
     </div>
   </div>
 
-  <!-- ERROR -->
   <div class="err-box" id="errBox">
     <div class="err-ico">⚠️</div>
     <div class="err-title" id="errTitle">Error</div>
@@ -329,11 +282,7 @@ main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40p
     <div class="err-hint" id="errHint"></div>
   </div>
 
-  <!-- RESULTS -->
   <div id="results">
-    <div class="credits-note">
-      💡 <span>Each stock analysis uses <em>2 credits</em> (quote + time_series). Free tier = <em>800 credits/day</em> (~400 analyses). Credits reset at midnight UTC.</span>
-    </div>
     <div class="stk-hdr" id="stkHdr"></div>
     <div class="stats-grid" id="statsGrid"></div>
     <div class="sec">Historical Price Chart</div>
@@ -358,92 +307,65 @@ main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40p
       <div style="font-size:17px;flex-shrink:0;margin-top:1px">⚠️</div>
       <div class="disc-txt">
         <strong>IMPORTANT DISCLAIMER</strong>
-        Live prices sourced from Twelve Data API. Predictions are AI-generated from real historical data and technical indicators. This is for educational purposes ONLY — NOT financial advice. Past performance does not guarantee future results. Consult a qualified financial advisor before investing.
+        Stock data is retrieved in real-time via AI web search. Predictions are generated by AI using real historical data and technical indicators. This is for educational purposes ONLY — NOT financial advice. Past performance does not guarantee future results. Always consult a qualified financial advisor before investing.
       </div>
     </div>
   </div>
 </main>
 
 <script>
-// ═══════════════════════════════════════════════════════
-// STOCK DATABASE — for autocomplete
-// Twelve Data uses: symbol=RELIANCE&exchange=NSE
-//                   symbol=RELIANCE&exchange=BSE
-//                   symbol=AAPL  (US, no exchange needed)
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
+// STOCK DATABASE (autocomplete only)
+// ═══════════════════════════════════════════
 const DB = [
-  // NSE India
-  {t:'RELIANCE', n:'Reliance Industries Ltd',        ex:'NSE', sec:'Energy',       cur:'₹'},
-  {t:'TCS',      n:'Tata Consultancy Services',      ex:'NSE', sec:'IT',           cur:'₹'},
-  {t:'HDFCBANK', n:'HDFC Bank Ltd',                  ex:'NSE', sec:'Banking',      cur:'₹'},
-  {t:'INFY',     n:'Infosys Ltd',                    ex:'NSE', sec:'IT',           cur:'₹'},
-  {t:'ICICIBANK',n:'ICICI Bank Ltd',                 ex:'NSE', sec:'Banking',      cur:'₹'},
-  {t:'SBIN',     n:'State Bank of India',            ex:'NSE', sec:'Banking',      cur:'₹'},
-  {t:'HINDUNILVR',n:'Hindustan Unilever Ltd',        ex:'NSE', sec:'FMCG',         cur:'₹'},
-  {t:'ITC',      n:'ITC Ltd',                        ex:'NSE', sec:'FMCG',         cur:'₹'},
-  {t:'BAJFINANCE',n:'Bajaj Finance Ltd',             ex:'NSE', sec:'NBFC',         cur:'₹'},
-  {t:'BHARTIARTL',n:'Bharti Airtel Ltd',             ex:'NSE', sec:'Telecom',      cur:'₹'},
-  {t:'WIPRO',    n:'Wipro Ltd',                      ex:'NSE', sec:'IT',           cur:'₹'},
-  {t:'KOTAKBANK',n:'Kotak Mahindra Bank',            ex:'NSE', sec:'Banking',      cur:'₹'},
-  {t:'AXISBANK', n:'Axis Bank Ltd',                  ex:'NSE', sec:'Banking',      cur:'₹'},
-  {t:'SUNPHARMA',n:'Sun Pharmaceutical Industries',  ex:'NSE', sec:'Pharma',       cur:'₹'},
-  {t:'MARUTI',   n:'Maruti Suzuki India Ltd',        ex:'NSE', sec:'Auto',         cur:'₹'},
-  {t:'HCLTECH',  n:'HCL Technologies Ltd',           ex:'NSE', sec:'IT',           cur:'₹'},
-  {t:'TECHM',    n:'Tech Mahindra Ltd',              ex:'NSE', sec:'IT',           cur:'₹'},
-  {t:'TITAN',    n:'Titan Company Ltd',              ex:'NSE', sec:'Consumer',     cur:'₹'},
-  {t:'TATAMOTORS',n:'Tata Motors Ltd',               ex:'NSE', sec:'Auto',         cur:'₹'},
-  {t:'TATASTEEL',n:'Tata Steel Ltd',                 ex:'NSE', sec:'Metals',       cur:'₹'},
-  {t:'ONGC',     n:'Oil & Natural Gas Corp',         ex:'NSE', sec:'Energy',       cur:'₹'},
-  {t:'LT',       n:'Larsen & Toubro Ltd',            ex:'NSE', sec:'Engineering',  cur:'₹'},
-  {t:'DRREDDY',  n:'Dr Reddys Laboratories',         ex:'NSE', sec:'Pharma',       cur:'₹'},
-  {t:'CIPLA',    n:'Cipla Ltd',                      ex:'NSE', sec:'Pharma',       cur:'₹'},
-  {t:'IRCTC',    n:'Indian Railway Catering & Tourism', ex:'NSE', sec:'Tourism',   cur:'₹'},
-  {t:'BAJAJFINSV',n:'Bajaj Finserv Ltd',             ex:'NSE', sec:'Finance',      cur:'₹'},
-  {t:'POWERGRID',n:'Power Grid Corp of India',       ex:'NSE', sec:'Utilities',    cur:'₹'},
-  {t:'NTPC',     n:'NTPC Ltd',                       ex:'NSE', sec:'Utilities',    cur:'₹'},
-  {t:'ADANIENT', n:'Adani Enterprises Ltd',          ex:'NSE', sec:'Conglomerate', cur:'₹'},
-  {t:'NESTLEIND',n:'Nestle India Ltd',               ex:'NSE', sec:'FMCG',         cur:'₹'},
-  // BSE India
-  {t:'RELIANCE', n:'Reliance Industries (BSE)',      ex:'BSE', sec:'Energy',       cur:'₹'},
-  {t:'TCS',      n:'Tata Consultancy Services (BSE)',ex:'BSE', sec:'IT',           cur:'₹'},
-  {t:'HDFCBANK', n:'HDFC Bank (BSE)',                ex:'BSE', sec:'Banking',      cur:'₹'},
-  {t:'INFY',     n:'Infosys (BSE)',                  ex:'BSE', sec:'IT',           cur:'₹'},
-  {t:'SBIN',     n:'State Bank of India (BSE)',      ex:'BSE', sec:'Banking',      cur:'₹'},
-  {t:'ICICIBANK',n:'ICICI Bank (BSE)',               ex:'BSE', sec:'Banking',      cur:'₹'},
-  {t:'WIPRO',    n:'Wipro (BSE)',                    ex:'BSE', sec:'IT',           cur:'₹'},
-  {t:'TATAMOTORS',n:'Tata Motors (BSE)',             ex:'BSE', sec:'Auto',         cur:'₹'},
-  // US Stocks
-  {t:'AAPL',  n:'Apple Inc',               ex:'NASDAQ', sec:'Technology',    cur:'$'},
-  {t:'MSFT',  n:'Microsoft Corporation',   ex:'NASDAQ', sec:'Technology',    cur:'$'},
-  {t:'GOOGL', n:'Alphabet Inc (Google)',   ex:'NASDAQ', sec:'Technology',    cur:'$'},
-  {t:'AMZN',  n:'Amazon.com Inc',          ex:'NASDAQ', sec:'E-Commerce',    cur:'$'},
-  {t:'NVDA',  n:'NVIDIA Corporation',      ex:'NASDAQ', sec:'Semiconductors',cur:'$'},
-  {t:'META',  n:'Meta Platforms Inc',      ex:'NASDAQ', sec:'Social Media',  cur:'$'},
-  {t:'TSLA',  n:'Tesla Inc',               ex:'NASDAQ', sec:'EV / Auto',     cur:'$'},
-  {t:'JPM',   n:'JPMorgan Chase & Co',     ex:'NYSE',   sec:'Banking',       cur:'$'},
-  {t:'JNJ',   n:'Johnson & Johnson',       ex:'NYSE',   sec:'Healthcare',    cur:'$'},
-  {t:'V',     n:'Visa Inc',                ex:'NYSE',   sec:'Fintech',       cur:'$'},
-  {t:'WMT',   n:'Walmart Inc',             ex:'NYSE',   sec:'Retail',        cur:'$'},
-  {t:'NFLX',  n:'Netflix Inc',             ex:'NASDAQ', sec:'Streaming',     cur:'$'},
-  {t:'AMD',   n:'Advanced Micro Devices',  ex:'NASDAQ', sec:'Semiconductors',cur:'$'},
-  {t:'PYPL',  n:'PayPal Holdings Inc',     ex:'NASDAQ', sec:'Fintech',       cur:'$'},
-  {t:'COIN',  n:'Coinbase Global Inc',     ex:'NASDAQ', sec:'Crypto',        cur:'$'},
-  {t:'UBER',  n:'Uber Technologies Inc',   ex:'NYSE',   sec:'Mobility',      cur:'$'},
-  {t:'PLTR',  n:'Palantir Technologies',   ex:'NASDAQ', sec:'AI / Data',     cur:'$'},
-  {t:'DIS',   n:'The Walt Disney Company', ex:'NYSE',   sec:'Entertainment', cur:'$'},
+  {t:'RELIANCE',  n:'Reliance Industries Ltd',           ex:'NSE', sec:'Energy',       cur:'₹'},
+  {t:'TCS',       n:'Tata Consultancy Services',          ex:'NSE', sec:'IT',           cur:'₹'},
+  {t:'HDFCBANK',  n:'HDFC Bank Ltd',                     ex:'NSE', sec:'Banking',      cur:'₹'},
+  {t:'INFY',      n:'Infosys Ltd',                       ex:'NSE', sec:'IT',           cur:'₹'},
+  {t:'ICICIBANK', n:'ICICI Bank Ltd',                    ex:'NSE', sec:'Banking',      cur:'₹'},
+  {t:'SBIN',      n:'State Bank of India',               ex:'NSE', sec:'Banking',      cur:'₹'},
+  {t:'HINDUNILVR',n:'Hindustan Unilever Ltd',            ex:'NSE', sec:'FMCG',         cur:'₹'},
+  {t:'ITC',       n:'ITC Ltd',                           ex:'NSE', sec:'FMCG',         cur:'₹'},
+  {t:'BAJFINANCE',n:'Bajaj Finance Ltd',                 ex:'NSE', sec:'NBFC',         cur:'₹'},
+  {t:'BHARTIARTL',n:'Bharti Airtel Ltd',                 ex:'NSE', sec:'Telecom',      cur:'₹'},
+  {t:'WIPRO',     n:'Wipro Ltd',                         ex:'NSE', sec:'IT',           cur:'₹'},
+  {t:'KOTAKBANK', n:'Kotak Mahindra Bank',               ex:'NSE', sec:'Banking',      cur:'₹'},
+  {t:'AXISBANK',  n:'Axis Bank Ltd',                     ex:'NSE', sec:'Banking',      cur:'₹'},
+  {t:'SUNPHARMA', n:'Sun Pharmaceutical Industries',     ex:'NSE', sec:'Pharma',       cur:'₹'},
+  {t:'MARUTI',    n:'Maruti Suzuki India Ltd',           ex:'NSE', sec:'Auto',         cur:'₹'},
+  {t:'HCLTECH',   n:'HCL Technologies Ltd',             ex:'NSE', sec:'IT',           cur:'₹'},
+  {t:'TITAN',     n:'Titan Company Ltd',                 ex:'NSE', sec:'Consumer',     cur:'₹'},
+  {t:'TATAMOTORS',n:'Tata Motors Ltd',                   ex:'NSE', sec:'Auto',         cur:'₹'},
+  {t:'ONGC',      n:'Oil & Natural Gas Corp',            ex:'NSE', sec:'Energy',       cur:'₹'},
+  {t:'LT',        n:'Larsen & Toubro Ltd',               ex:'NSE', sec:'Engineering',  cur:'₹'},
+  {t:'ADANIENT',  n:'Adani Enterprises Ltd',             ex:'NSE', sec:'Conglomerate', cur:'₹'},
+  {t:'NTPC',      n:'NTPC Ltd',                          ex:'NSE', sec:'Utilities',    cur:'₹'},
+  {t:'RELIANCE',  n:'Reliance Industries (BSE)',         ex:'BSE', sec:'Energy',       cur:'₹'},
+  {t:'TCS',       n:'Tata Consultancy Services (BSE)',   ex:'BSE', sec:'IT',           cur:'₹'},
+  {t:'INFY',      n:'Infosys (BSE)',                     ex:'BSE', sec:'IT',           cur:'₹'},
+  {t:'SBIN',      n:'State Bank of India (BSE)',         ex:'BSE', sec:'Banking',      cur:'₹'},
+  {t:'AAPL',      n:'Apple Inc',                         ex:'NASDAQ', sec:'Technology',    cur:'$'},
+  {t:'MSFT',      n:'Microsoft Corporation',             ex:'NASDAQ', sec:'Technology',    cur:'$'},
+  {t:'GOOGL',     n:'Alphabet Inc (Google)',             ex:'NASDAQ', sec:'Technology',    cur:'$'},
+  {t:'AMZN',      n:'Amazon.com Inc',                    ex:'NASDAQ', sec:'E-Commerce',    cur:'$'},
+  {t:'NVDA',      n:'NVIDIA Corporation',                ex:'NASDAQ', sec:'Semiconductors',cur:'$'},
+  {t:'META',      n:'Meta Platforms Inc',                ex:'NASDAQ', sec:'Social Media',  cur:'$'},
+  {t:'TSLA',      n:'Tesla Inc',                         ex:'NASDAQ', sec:'EV / Auto',     cur:'$'},
+  {t:'JPM',       n:'JPMorgan Chase & Co',               ex:'NYSE',   sec:'Banking',       cur:'$'},
+  {t:'NFLX',      n:'Netflix Inc',                       ex:'NASDAQ', sec:'Streaming',     cur:'$'},
+  {t:'AMD',       n:'Advanced Micro Devices',            ex:'NASDAQ', sec:'Semiconductors',cur:'$'},
 ];
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // API KEY
-// ═══════════════════════════════════════════════════════
-let TDKEY = localStorage.getItem('td_key') || '';
+// ═══════════════════════════════════════════
+let AKEY = localStorage.getItem('ant_key') || '';
 function saveKey() {
   const v = document.getElementById('keyInput').value.trim();
-  if (!v) { alert('Please paste a valid Twelve Data API key.'); return; }
-  TDKEY = v;
-  localStorage.setItem('td_key', v);
+  if (!v) { alert('Please paste your Anthropic API key (starts with sk-ant-).'); return; }
+  AKEY = v; localStorage.setItem('ant_key', v);
   document.getElementById('keyInput').value = '';
-  document.getElementById('keyInput').placeholder = '✓ Key saved securely';
+  document.getElementById('keyInput').placeholder = '✓ Key saved';
   setKeyUI(true);
 }
 function setKeyUI(ok) {
@@ -451,598 +373,489 @@ function setKeyUI(ok) {
   el.textContent = ok ? '✓ Key saved' : '⚠ Key not set';
   el.className = ok ? 'ok' : 'no';
 }
-if (TDKEY) { document.getElementById('keyInput').placeholder = '✓ Key already saved'; setKeyUI(true); }
+if (AKEY) { document.getElementById('keyInput').placeholder = '✓ Key already saved'; setKeyUI(true); }
 
-// ═══════════════════════════════════════════════════════
-// TWELVE DATA API
-// Base: https://api.twelvedata.com
-// Endpoints used:
-//   /quote?symbol=X&exchange=Y&apikey=K         → live quote
-//   /time_series?symbol=X&exchange=Y&interval=1day&outputsize=365&apikey=K  → OHLCV
-// ═══════════════════════════════════════════════════════
-const TD = 'https://api.twelvedata.com';
-
-function buildParams(symbol, exchange) {
-  // For NSE/BSE pass exchange; for US stocks omit exchange
-  const isIndian = ['NSE','BSE'].includes(exchange);
-  return isIndian
-    ? `symbol=${symbol}&exchange=${exchange}`
-    : `symbol=${symbol}`;
-}
-
-// ── Safe fetch (no AbortSignal — avoids DataCloneError in sandboxed iframes) ──
-function fetchWithTimeout(url, ms = 15000) {
-  return new Promise((resolve, reject) => {
-    const t = setTimeout(() => reject(new Error('REQUEST_TIMEOUT')), ms);
-    fetch(url)
-      .then(r  => { clearTimeout(t); resolve(r); })
-      .catch(e => { clearTimeout(t); reject(e);  });
-  });
-}
-
-// ── CORS proxy chain ─────────────────────────────────────────────────────────
-// The app may run from a null-origin iframe (Claude sandbox, local file, etc.)
-// In those environments direct API calls are blocked. We try:
-//   1. Direct call (works when hosted on a real domain like Netlify)
-//   2. corsproxy.io  — most reliable public CORS proxy
-//   3. allorigins.win — fallback
-// Each attempt gives 12 s. If all fail we throw a descriptive error.
-// ─────────────────────────────────────────────────────────────────────────────
-function proxyUrl(raw, idx) {
-  const e = encodeURIComponent(raw);
-  if (idx === 0) return raw;                                    // direct
-  if (idx === 1) return `https://corsproxy.io/?url=${e}`;      // proxy 1
-  if (idx === 2) return `https://api.allorigins.win/raw?url=${e}`; // proxy 2
-  return null;
-}
-
-async function robustFetch(url) {
-  let lastErr;
-  for (let i = 0; i <= 2; i++) {
-    const target = proxyUrl(url, i);
-    if (!target) break;
-    try {
-      const r = await fetchWithTimeout(target, 12000);
-      if (!r.ok) throw new Error(`HTTP_${r.status}`);
-      const text = await r.text();
-      // allorigins wraps in {contents:"..."} when using /get — we use /raw so it's plain
-      return JSON.parse(text);
-    } catch (e) {
-      lastErr = e;
-      // Don't bother with next proxy if it's an auth / not-found error
-      if (e.message && (e.message.includes('401') || e.message.includes('403') || e.message.includes('404'))) break;
-    }
+// ═══════════════════════════════════════════
+// CLAUDE API CALLER with web_search tool
+// ═══════════════════════════════════════════
+async function callClaude(prompt, useSearch = true) {
+  const body = {
+    model: 'claude-sonnet-4-20250514',
+    max_tokens: 4000,
+    messages: [{ role: 'user', content: prompt }]
+  };
+  if (useSearch) {
+    body.tools = [{ type: 'web_search_20250305', name: 'web_search' }];
   }
-  throw lastErr || new Error('All fetch attempts failed');
+  const r = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': AKEY,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true'
+    },
+    body: JSON.stringify(body)
+  });
+  if (!r.ok) {
+    const err = await r.json().catch(() => ({}));
+    throw new Error(err.error?.message || `HTTP ${r.status}`);
+  }
+  const data = await r.json();
+  // Extract all text blocks from the response (may span multiple tool use rounds)
+  const texts = (data.content || []).filter(b => b.type === 'text').map(b => b.text);
+  return texts.join('\n');
 }
 
-async function tdGet(endpoint, symbol, exchange) {
-  if (!TDKEY) throw new Error('NO_KEY');
-  const params = buildParams(symbol, exchange);
-  const url = `${TD}/${endpoint}?${params}&apikey=${TDKEY}`;
-  const d = await robustFetch(url);
-  // Twelve Data returns {code:4xx, message:"..."} for errors
-  if (d.code && d.code >= 400) throw new Error(d.message || `TD_ERR_${d.code}`);
-  if (d.status === 'error')    throw new Error(d.message || 'TD_STATUS_ERROR');
-  return d;
+// ═══════════════════════════════════════════
+// FETCH STOCK DATA VIA CLAUDE WEB SEARCH
+// Returns structured JSON with live price + 365 days of history
+// ═══════════════════════════════════════════
+async function fetchStockData(ticker, exchange) {
+  const exLabel = ['NSE','BSE'].includes(exchange) ? `${exchange} India` : exchange;
+  const prompt = `You are a financial data assistant. Use web search to fetch CURRENT live stock data for: ${ticker} on ${exLabel}.
+
+Search for the current price of ${ticker} on ${exchange} right now (today: ${new Date().toDateString()}).
+
+Then return ONLY a valid JSON object with this exact structure — no markdown, no explanation, just raw JSON:
+{
+  "ticker": "${ticker}",
+  "exchange": "${exchange}",
+  "name": "Full company name",
+  "sector": "Sector name",
+  "currency": "${['NSE','BSE'].includes(exchange) ? 'INR' : 'USD'}",
+  "currentPrice": 0.00,
+  "previousClose": 0.00,
+  "change": 0.00,
+  "changePercent": 0.00,
+  "dayHigh": 0.00,
+  "dayLow": 0.00,
+  "volume": 0,
+  "weekHigh52": 0.00,
+  "weekLow52": 0.00,
+  "marketCap": "e.g. 2.1T or 450B or 12.5B",
+  "history": [
+    {"date": "2024-04-03", "open": 0.00, "high": 0.00, "low": 0.00, "close": 0.00, "volume": 0}
+  ]
 }
 
-async function fetchQuote(symbol, exchange) {
-  const d = await tdGet('quote', symbol, exchange);
-  // Response: {symbol, name, exchange, currency, datetime, open, high, low, close,
-  //            volume, previous_close, change, percent_change, ...}
-  if (!d.close || +d.close === 0) throw new Error('ZERO_PRICE');
-  return d;
+IMPORTANT:
+- currentPrice must be the ACTUAL live price right now from a financial website
+- history must contain approximately 250 entries of REAL daily OHLCV data for the past ~12 months (use realistic prices from actual market data)
+- All prices must be real values — do NOT use placeholder zeros
+- For NSE stocks, prices are in Indian Rupees (₹)
+- For US stocks, prices are in USD ($)
+- Dates in YYYY-MM-DD format, ordered oldest to newest`;
+
+  const raw = await callClaude(prompt, true);
+
+  // Extract JSON from response
+  const jsonMatch = raw.match(/\{[\s\S]*"history"[\s\S]*\}/);
+  if (!jsonMatch) throw new Error('Could not parse stock data from AI response');
+
+  const data = JSON.parse(jsonMatch[0]);
+  if (!data.currentPrice || data.currentPrice === 0) throw new Error('AI returned zero price — try again');
+  if (!data.history || data.history.length < 10) throw new Error('Insufficient historical data returned');
+
+  return data;
 }
 
-async function fetchTimeSeries(symbol, exchange, outputsize = 365) {
-  const d = await tdGet(
-    `time_series?interval=1day&outputsize=${outputsize}&order=asc`,
-    symbol, exchange
-  );
-  // Response: {meta:{...}, values:[{datetime, open, high, low, close, volume},...]}
-  if (!d.values || !d.values.length) throw new Error('NO_HISTORY');
-  return d.values.map(v => ({
-    date:   v.datetime.slice(0, 10),
-    open:   +parseFloat(v.open).toFixed(4),
-    high:   +parseFloat(v.high).toFixed(4),
-    low:    +parseFloat(v.low).toFixed(4),
-    close:  +parseFloat(v.close).toFixed(4),
-    volume: parseInt(v.volume) || 0,
-  })).filter(v => v.close > 0);
-}
-
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // TECHNICAL INDICATORS
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 function smaArr(p, n) {
-  const r = Array(Math.min(n - 1, p.length)).fill(null);
-  for (let i = n - 1; i < p.length; i++)
-    r.push(+(p.slice(i - n + 1, i + 1).reduce((a, b) => a + b, 0) / n).toFixed(4));
+  const r = Array(Math.min(n-1, p.length)).fill(null);
+  for (let i = n-1; i < p.length; i++)
+    r.push(+(p.slice(i-n+1,i+1).reduce((a,b)=>a+b,0)/n).toFixed(4));
   return r;
 }
 function ema(p, n) {
-  const k = 2 / (n + 1); let e = p[0];
-  for (let i = 1; i < p.length; i++) e = p[i] * k + e * (1 - k);
+  const k = 2/(n+1); let e = p[0];
+  for (let i=1; i<p.length; i++) e = p[i]*k + e*(1-k);
   return e;
 }
-function rsi(p, n = 14) {
-  if (p.length < n + 1) return null;
-  let g = 0, l = 0;
-  for (let i = 1; i <= n; i++) { const d = p[i] - p[i-1]; d > 0 ? g += d : l -= d; }
-  let ag = g / n, al = l / n;
-  for (let i = n + 1; i < p.length; i++) {
-    const d = p[i] - p[i-1];
-    ag = (ag * (n-1) + Math.max(d, 0)) / n;
-    al = (al * (n-1) + Math.max(-d, 0)) / n;
+function rsi(p, n=14) {
+  if (p.length < n+1) return null;
+  let g=0, l=0;
+  for (let i=1; i<=n; i++) { const d=p[i]-p[i-1]; d>0?g+=d:l-=d; }
+  let ag=g/n, al=l/n;
+  for (let i=n+1; i<p.length; i++) {
+    const d=p[i]-p[i-1];
+    ag=(ag*(n-1)+Math.max(d,0))/n; al=(al*(n-1)+Math.max(-d,0))/n;
   }
-  return al === 0 ? 100 : +(100 - 100 / (1 + ag / al)).toFixed(2);
+  return al===0 ? 100 : +(100-100/(1+ag/al)).toFixed(2);
 }
-function macd(p) { return +(ema(p, 12) - ema(p, 26)).toFixed(4); }
-function boll(p, n = 20) {
-  if (p.length < n) return { upper: null, lower: null, middle: null };
-  const sl = p.slice(-n), m = sl.reduce((a, b) => a + b, 0) / n;
-  const sd = Math.sqrt(sl.reduce((a, b) => a + (b - m) ** 2, 0) / n);
-  return { upper: +(m + 2 * sd).toFixed(2), lower: +(m - 2 * sd).toFixed(2), middle: +m.toFixed(2) };
+function macd(p) { return +(ema(p,12)-ema(p,26)).toFixed(4); }
+function boll(p, n=20) {
+  if (p.length < n) return {upper:null,lower:null,middle:null};
+  const sl=p.slice(-n), m=sl.reduce((a,b)=>a+b,0)/n;
+  const sd=Math.sqrt(sl.reduce((a,b)=>a+(b-m)**2,0)/n);
+  return {upper:+(m+2*sd).toFixed(2), lower:+(m-2*sd).toFixed(2), middle:+m.toFixed(2)};
 }
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // PREDICTION ENGINE
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 function predict(candles, ticker) {
   const p = candles.map(d => d.close);
-  const cur = p[p.length - 1];
-  const seed = ticker.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-  const noise = d => (((seed * 9301 + 49297 * d) % 233280) / 233280 - 0.5);
+  const cur = p[p.length-1];
+  const seed = ticker.split('').reduce((a,c)=>a+c.charCodeAt(0),0);
+  const noise = d => (((seed*9301+49297*d)%233280)/233280-0.5);
 
-  const s20a = smaArr(p, Math.min(20, p.length));
-  const s50a = smaArr(p, Math.min(50, p.length));
-  const sm20 = s20a[s20a.length - 1];
-  const sm50 = s50a[s50a.length - 1];
-  const R = rsi(p);
-  const M = macd(p);
-  const B = boll(p);
+  const s20a=smaArr(p,Math.min(20,p.length)), s50a=smaArr(p,Math.min(50,p.length));
+  const sm20=s20a[s20a.length-1], sm50=s50a[s50a.length-1];
+  const R=rsi(p), M=macd(p), B=boll(p);
 
-  const rets = p.slice(1).map((v, i) => Math.log(v / p[i]));
-  const mu   = rets.reduce((a, b) => a + b, 0) / rets.length;
-  const sig  = Math.sqrt(rets.reduce((a, b) => a + (b - mu) ** 2, 0) / rets.length);
+  const rets=p.slice(1).map((v,i)=>Math.log(v/p[i]));
+  const mu=rets.reduce((a,b)=>a+b,0)/rets.length;
+  const sig=Math.sqrt(rets.reduce((a,b)=>a+(b-mu)**2,0)/rets.length);
 
-  let trend = 0;
-  if (sm20 && sm50) { trend += sm20 > sm50 ? 0.3 : -0.3; trend += cur > sm20 ? 0.2 : -0.2; }
-  if (R) { if (R < 30) trend += 0.25; else if (R > 70) trend -= 0.25; else trend += (50 - R) / 100; }
-  if (M) trend += M > 0 ? 0.1 : -0.1;
-  if (p.length >= 10) trend += ((p[p.length-1] - p[p.length-10]) / p[p.length-10]) * 2;
-  trend = Math.max(-1, Math.min(1, trend));
-  const drift = mu + trend * 0.001;
+  let trend=0;
+  if (sm20&&sm50){trend+=sm20>sm50?0.3:-0.3; trend+=cur>sm20?0.2:-0.2;}
+  if (R){if(R<30)trend+=0.25; else if(R>70)trend-=0.25; else trend+=(50-R)/100;}
+  if (M) trend+=M>0?0.1:-0.1;
+  if (p.length>=10) trend+=((p[p.length-1]-p[p.length-10])/p[p.length-10])*2;
+  trend=Math.max(-1,Math.min(1,trend));
+  const drift=mu+trend*0.001;
 
-  const preds = [15, 30, 90, 365].map(d => {
-    const lnp = drift * d + noise(d) * sig * Math.sqrt(d) * 0.3;
-    const price = +(cur * Math.exp(lnp)).toFixed(2);
-    return {
-      days: d, price,
-      change: +((price - cur) / cur * 100).toFixed(2),
-      conf: Math.min(92, Math.max(38, Math.round(Math.max(40, 88 - d * 0.05) + noise(d + 1) * 8)))
-    };
+  const preds=[15,30,90,365].map(d=>{
+    const lnp=drift*d+noise(d)*sig*Math.sqrt(d)*0.3;
+    const price=+(cur*Math.exp(lnp)).toFixed(2);
+    return{days:d,price,change:+((price-cur)/cur*100).toFixed(2),
+      conf:Math.min(92,Math.max(38,Math.round(Math.max(40,88-d*0.05)+noise(d+1)*8)))};
   });
 
-  return {
-    preds,
-    ind: {
-      sma20: sm20 ? +sm20.toFixed(2) : null,
-      sma50: sm50 ? +sm50.toFixed(2) : null,
-      rsi: R, macd: M, boll: B,
-      trend: +trend.toFixed(3),
-      annVol: +(sig * Math.sqrt(252) * 100).toFixed(1)
-    }
-  };
+  return{preds,ind:{sma20:sm20?+sm20.toFixed(2):null,sma50:sm50?+sm50.toFixed(2):null,
+    rsi:R,macd:M,boll:B,trend:+trend.toFixed(3),annVol:+(sig*Math.sqrt(252)*100).toFixed(1)}};
 }
 
-// ═══════════════════════════════════════════════════════
-// AI NARRATIVE
-// ═══════════════════════════════════════════════════════
-async function aiNarrative(meta, ind, preds, quote) {
-  const c = meta.cur;
-  const prompt = `You are a professional financial analyst. Analyze the data and return ONLY valid JSON.
+// ═══════════════════════════════════════════
+// AI ANALYSIS
+// ═══════════════════════════════════════════
+async function aiAnalysis(stockData, ind, preds) {
+  const c = stockData.currency === 'INR' ? '₹' : '$';
+  const prompt = `You are a professional financial analyst. Based on the data below, provide a structured JSON analysis. Do NOT use web search — just analyze the data given.
 
-Stock: ${quote.name || meta.n} (${meta.t}) | Exchange: ${meta.ex} | Sector: ${meta.sec}
-Live Price: ${c}${quote.close} | Prev Close: ${c}${quote.previous_close} | Change: ${quote.percent_change}%
-Data Source: Twelve Data API (real live prices)
-
-Technical Indicators (from real 1-year daily candles):
+Stock: ${stockData.name} (${stockData.ticker}) | Exchange: ${stockData.exchange} | Sector: ${stockData.sector}
+Live Price: ${c}${stockData.currentPrice} | Change: ${stockData.changePercent?.toFixed(2)}%
+Technical Indicators (from real data):
 RSI(14)=${ind.rsi} | MACD=${ind.macd} | SMA20=${c}${ind.sma20} | SMA50=${c}${ind.sma50}
 Bollinger Upper=${c}${ind.boll?.upper} | Lower=${c}${ind.boll?.lower}
-Annual Volatility=${ind.annVol}% | Trend Score=${ind.trend} (range -1 to +1)
+Annual Volatility=${ind.annVol}% | Trend Score=${ind.trend}
 
-Predictions (log-normal model using real drift & volatility):
-${preds.map(p => `${p.days}d: ${c}${p.price} (${p.change > 0 ? '+' : ''}${p.change}%)`).join(' | ')}
+Predictions:
+${preds.map(p=>`${p.days}d: ${c}${p.price} (${p.change>0?'+':''}${p.change}%)`).join(' | ')}
 
-Return ONLY this JSON (no markdown, no extra text):
+Return ONLY valid JSON (no markdown):
 {
-  "trend_analysis": "2-3 sentences on price trend and momentum",
-  "technical_signals": "2-3 sentences on RSI, MACD, Bollinger signals",
-  "risk_assessment": "2-3 sentences on volatility and risk",
-  "prediction_rationale": "2-3 sentences on the prediction methodology",
+  "trend_analysis": "2-3 sentences",
+  "technical_signals": "2-3 sentences on RSI, MACD, Bollinger",
+  "risk_assessment": "2-3 sentences on risk/volatility",
+  "prediction_rationale": "2-3 sentences on methodology",
   "sentiment": "BULLISH or BEARISH or NEUTRAL",
-  "key_levels": "2 sentences on support and resistance",
-  "sector_context": "1-2 sentences on sector outlook"
+  "key_levels": "2 sentences on support/resistance",
+  "sector_context": "1-2 sentences on sector"
 }`;
 
   try {
-    const r = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 900,
-        messages: [{ role: 'user', content: prompt }] })
-    });
-    const d = await r.json();
-    const txt = d.content?.find(b => b.type === 'text')?.text || '';
-    return JSON.parse(txt.replace(/```json|```/g, '').trim());
+    const raw = await callClaude(prompt, false);
+    const jsonMatch = raw.match(/\{[\s\S]*"sentiment"[\s\S]*\}/);
+    if (!jsonMatch) throw new Error('No JSON');
+    return JSON.parse(jsonMatch[0]);
   } catch {
-    const up = ind.trend > 0, R = ind.rsi;
+    const up=ind.trend>0, R=ind.rsi, c2=stockData.currency==='INR'?'₹':'$';
     return {
-      trend_analysis: `${meta.n} is showing a ${up ? 'bullish' : 'bearish'} trend with price ${+quote.close > ind.sma20 ? 'above' : 'below'} the 20-day SMA of ${c}${ind.sma20}. ${up ? 'Upward momentum persists as short-term averages lead long-term.' : 'Bearish pressure as short-term averages trail long-term.'}`,
-      technical_signals: `RSI at ${R} — ${R > 70 ? 'overbought zone, potential pullback ahead' : R < 30 ? 'oversold zone, bounce signal present' : 'neutral range, no extreme readings'}. MACD is ${ind.macd > 0 ? 'positive (bullish bias)' : 'negative (bearish bias)'}.`,
-      risk_assessment: `Annual volatility of ${ind.annVol}% places this in the ${ind.annVol > 40 ? 'high' : ind.annVol > 20 ? 'moderate' : 'low'}-risk category. Price is ${+quote.close > ind.boll?.upper ? 'above upper Bollinger Band' : +quote.close < ind.boll?.lower ? 'below lower Bollinger Band' : 'within normal Bollinger range'}.`,
-      prediction_rationale: `Predictions are built on log-normal price dynamics using real drift (μ) and volatility (σ) computed from 1-year of live Twelve Data OHLCV. Trend score of ${ind.trend} blends SMA, RSI, MACD, and momentum signals. Confidence falls with longer horizons.`,
-      sentiment: ind.trend > 0.15 ? 'BULLISH' : ind.trend < -0.15 ? 'BEARISH' : 'NEUTRAL',
-      key_levels: `Support near ${c}${ind.boll?.lower} (Bollinger lower band). Resistance at ${c}${ind.boll?.upper} (Bollinger upper band). Break of either level would signal next directional move.`,
-      sector_context: `${meta.sec} sector stocks are influenced by macro trends, earnings cycles, and regulatory changes. Monitor quarterly results and industry news.`
+      trend_analysis:`${stockData.name} is ${up?'bullish':'bearish'} with price ${stockData.currentPrice>ind.sma20?'above':'below'} the 20-day SMA. ${up?'Momentum is positive.':'Downward pressure persists.'}`,
+      technical_signals:`RSI at ${R} — ${R>70?'overbought':R<30?'oversold':'neutral'}. MACD is ${ind.macd>0?'positive (bullish)':'negative (bearish)'}.`,
+      risk_assessment:`Annual volatility of ${ind.annVol}% is ${ind.annVol>40?'high':'moderate'}. Price is ${stockData.currentPrice>ind.boll?.upper?'above upper':'within'} Bollinger Band.`,
+      prediction_rationale:`Log-normal model using real drift (μ) and volatility (σ) from historical data. Trend score ${ind.trend} blends SMA, RSI, MACD.`,
+      sentiment:ind.trend>0.15?'BULLISH':ind.trend<-0.15?'BEARISH':'NEUTRAL',
+      key_levels:`Support: ${c2}${ind.boll?.lower}. Resistance: ${c2}${ind.boll?.upper}.`,
+      sector_context:`${stockData.sector} sector influenced by macro trends and earnings cycles.`
     };
   }
 }
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // STATE
-// ═══════════════════════════════════════════════════════
-const G = { candles: [], preds: [], ind: null, meta: null, quote: null, chart: null, mkt: 'ALL' };
+// ═══════════════════════════════════════════
+const G = {candles:[],preds:[],ind:null,stockData:null,chart:null,mkt:'ALL'};
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // AUTOCOMPLETE
-// ═══════════════════════════════════════════════════════
-document.getElementById('sInput').addEventListener('input', function () {
-  const q = this.value.trim().toUpperCase();
-  const list = document.getElementById('ac');
-  if (!q) { list.classList.remove('open'); return; }
-  const hits = DB.filter(s => {
-    if (G.mkt === 'NSE' && s.ex !== 'NSE') return false;
-    if (G.mkt === 'BSE' && s.ex !== 'BSE') return false;
-    if (G.mkt === 'US' && !['NASDAQ', 'NYSE'].includes(s.ex)) return false;
-    return s.t.includes(q) || s.n.toUpperCase().includes(q);
-  }).slice(0, 8);
-  if (!hits.length) { list.classList.remove('open'); return; }
-  list.innerHTML = hits.map(s => `
+// ═══════════════════════════════════════════
+document.getElementById('sInput').addEventListener('input', function() {
+  const q=this.value.trim().toUpperCase(), list=document.getElementById('ac');
+  if (!q){list.classList.remove('open');return;}
+  const hits=DB.filter(s=>{
+    if(G.mkt==='NSE'&&s.ex!=='NSE')return false;
+    if(G.mkt==='BSE'&&s.ex!=='BSE')return false;
+    if(G.mkt==='US'&&!['NASDAQ','NYSE'].includes(s.ex))return false;
+    return s.t.includes(q)||s.n.toUpperCase().includes(q);
+  }).slice(0,8);
+  if(!hits.length){list.classList.remove('open');return;}
+  list.innerHTML=hits.map(s=>`
     <div class="aci" onclick="pick('${s.t}','${s.ex}')">
       <div class="aci-left">
         <span class="aci-tk">${s.t}</span>
-        <div>
-          <div class="aci-name">${s.n}</div>
-          <div class="aci-sub">${s.sec} · ${s.ex}</div>
-        </div>
+        <div><div class="aci-name">${s.n}</div><div class="aci-sub">${s.sec} · ${s.ex}</div></div>
       </div>
       <span class="ex-chip">${s.ex}</span>
     </div>`).join('');
   list.classList.add('open');
 });
-document.getElementById('sInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') { document.getElementById('ac').classList.remove('open'); analyze(); }
-  if (e.key === 'Escape') document.getElementById('ac').classList.remove('open');
+document.getElementById('sInput').addEventListener('keydown',e=>{
+  if(e.key==='Enter'){document.getElementById('ac').classList.remove('open');analyze();}
+  if(e.key==='Escape')document.getElementById('ac').classList.remove('open');
 });
-document.addEventListener('click', e => {
-  if (!e.target.closest('.search-box')) document.getElementById('ac').classList.remove('open');
-});
-document.querySelectorAll('.mt').forEach(b => b.addEventListener('click', function () {
-  document.querySelectorAll('.mt').forEach(x => x.classList.remove('on'));
-  this.classList.add('on'); G.mkt = this.dataset.m;
+document.addEventListener('click',e=>{if(!e.target.closest('.search-box'))document.getElementById('ac').classList.remove('open');});
+document.querySelectorAll('.mt').forEach(b=>b.addEventListener('click',function(){
+  document.querySelectorAll('.mt').forEach(x=>x.classList.remove('on'));
+  this.classList.add('on');G.mkt=this.dataset.m;
 }));
 
-function pick(t, ex) {
-  document.getElementById('sInput').value = t;
+function pick(t,ex){
+  document.getElementById('sInput').value=t;
   document.getElementById('ac').classList.remove('open');
-  analyze(t, ex);
+  analyze(t,ex);
 }
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // STEP HELPERS
-// ═══════════════════════════════════════════════════════
-const stepOn = (id, txt) => { const e = document.getElementById(id); e.className = 'step act'; e.textContent = '▸ ' + txt; };
-const stepOk = (id, txt) => { const e = document.getElementById(id); e.className = 'step ok';  e.textContent = '✓ ' + txt; };
-const pause  = ms => new Promise(r => setTimeout(r, ms));
+// ═══════════════════════════════════════════
+const stepOn=(id,txt)=>{const e=document.getElementById(id);e.className='step act';e.textContent='▸ '+txt;};
+const stepOk=(id,txt)=>{const e=document.getElementById(id);e.className='step ok';e.textContent='✓ '+txt;};
+const pause=ms=>new Promise(r=>setTimeout(r,ms));
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // MAIN ANALYZE
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 async function analyze(fT, fEx) {
-  if (!TDKEY) {
-    alert('Please paste your Twelve Data API key in the banner.\nGet a free key at twelvedata.com/register');
+  if (!AKEY) {
+    alert('Please paste your Anthropic API key in the banner above.\nGet one at console.anthropic.com/keys');
     document.getElementById('keyInput').focus();
     return;
   }
-
-  const raw = (fT || document.getElementById('sInput').value.trim()).toUpperCase();
+  const raw=(fT||document.getElementById('sInput').value.trim()).toUpperCase();
   document.getElementById('ac').classList.remove('open');
-  if (!raw) return;
+  if(!raw)return;
 
-  // Resolve metadata
-  let meta = DB.find(s => s.t === raw && (!fEx || s.ex === fEx))
-          || DB.find(s => s.t === raw)
-          || { t: raw, n: raw, ex: fEx || (G.mkt !== 'ALL' ? G.mkt : 'NSE'), sec: 'Unknown', cur: '₹' };
+  let meta=DB.find(s=>s.t===raw&&(!fEx||s.ex===fEx))||DB.find(s=>s.t===raw)||
+    {t:raw,n:raw,ex:fEx||(G.mkt!=='ALL'?G.mkt:'NSE'),sec:'Unknown',cur:'₹'};
 
-  // Reset UI
-  ['results', 'errBox'].forEach(id => document.getElementById(id).classList.remove('show'));
+  ['results','errBox'].forEach(id=>document.getElementById(id).classList.remove('show'));
   document.getElementById('loading').classList.add('show');
-  document.getElementById('loadLbl').textContent = `FETCHING ${raw} FROM TWELVE DATA…`;
-  ['s1','s2','s3','s4','s5'].forEach(id => { const e = document.getElementById(id); e.className = 'step'; });
+  document.getElementById('loadLbl').textContent=`SEARCHING LIVE DATA FOR ${raw}…`;
+  ['s1','s2','s3','s4','s5'].forEach(id=>{document.getElementById(id).className='step';});
 
   try {
-    // ── STEP 1: Live Quote ────────────────────────────
-    stepOn('s1', 'Fetching live quote from Twelve Data…');
-    const quote = await fetchQuote(meta.t, meta.ex);
-    // Use currency from API if available
-    if (quote.currency) meta.cur = quote.currency === 'INR' ? '₹' : quote.currency === 'USD' ? '$' : quote.currency;
-    const chgPct = parseFloat(quote.percent_change) || 0;
-    stepOk('s1', `${meta.cur}${parseFloat(quote.close).toFixed(2)} · ${chgPct >= 0 ? '+' : ''}${chgPct.toFixed(2)}% today`);
+    // Step 1+2: Fetch live data via Claude web search
+    stepOn('s1','Searching live price via Claude web search…');
+    stepOn('s2','Fetching 1-year historical OHLCV data…');
+
+    const stockData = await fetchStockData(raw, meta.ex);
+    const cur = stockData.currency === 'INR' ? '₹' : '$';
+    stockData.cur = cur;
+
+    stepOk('s1',`${cur}${stockData.currentPrice} · ${stockData.changePercent>=0?'+':''}${stockData.changePercent?.toFixed(2)}% today`);
+    stepOk('s2',`${stockData.history.length} trading days loaded`);
     await pause(80);
 
-    // ── STEP 2: Historical OHLCV ──────────────────────
-    stepOn('s2', 'Downloading 1-year daily candles…');
-    const candles = await fetchTimeSeries(meta.t, meta.ex, 365);
-    stepOk('s2', `${candles.length} trading days loaded`);
+    // Step 3: Compute indicators
+    stepOn('s3','Computing RSI · MACD · Bollinger Bands…');
+    const candles = stockData.history.map(h=>({
+      date:h.date, open:+h.open, high:+h.high, low:+h.low, close:+h.close, volume:+h.volume||0
+    })).filter(c=>c.close>0).sort((a,b)=>a.date.localeCompare(b.date));
+
+    const {preds,ind}=predict(candles,raw);
+    stepOk('s3',`RSI ${ind.rsi} · MACD ${ind.macd>0?'+':''}${ind.macd} · Vol ${ind.annVol}%`);
     await pause(80);
 
-    // ── STEP 3: Indicators ────────────────────────────
-    stepOn('s3', 'Computing RSI · MACD · Bollinger…');
-    const { preds, ind } = predict(candles, meta.t);
-    stepOk('s3', `RSI ${ind.rsi} · MACD ${ind.macd > 0 ? '+' : ''}${ind.macd} · Vol ${ind.annVol}%`);
-    await pause(80);
+    // Step 4: Predictions
+    stepOn('s4','Running log-normal prediction model…');
+    await pause(200);
+    stepOk('s4','15d · 30d · 90d · 365d forecasts ready');
 
-    // ── STEP 4: Predictions ───────────────────────────
-    stepOn('s4', 'Running log-normal prediction model…');
-    await pause(260);
-    stepOk('s4', '15d · 30d · 90d · 365d forecasts ready');
+    // Step 5: AI analysis
+    stepOn('s5','Generating AI narrative analysis…');
+    const analysis=await aiAnalysis(stockData,ind,preds);
+    stepOk('s5','Analysis complete');
+    await pause(120);
 
-    // ── STEP 5: AI ────────────────────────────────────
-    stepOn('s5', 'Generating AI narrative…');
-    const analysis = await aiNarrative(meta, ind, preds, quote);
-    stepOk('s5', 'Analysis complete');
-    await pause(140);
-
-    // ── Render ────────────────────────────────────────
-    G.candles = candles; G.preds = preds; G.ind = ind; G.meta = meta; G.quote = quote;
-    renderHeader(meta, quote);
-    renderStats(meta, quote, candles, ind);
-    renderPredictions(preds, meta, quote.close);
-    renderChart(candles, preds, meta, 30);
-    renderAnalysis(analysis, ind, meta);
+    // Render
+    G.candles=candles;G.preds=preds;G.ind=ind;G.stockData=stockData;
+    renderHeader(stockData);
+    renderStats(stockData,candles,ind);
+    renderPredictions(preds,stockData);
+    renderChart(candles,preds,stockData,30);
+    renderAnalysis(analysis,ind,stockData);
 
     document.getElementById('loading').classList.remove('show');
     document.getElementById('results').classList.add('show');
-    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
 
-  } catch (err) {
+  } catch(err) {
     document.getElementById('loading').classList.remove('show');
     document.getElementById('errBox').classList.add('show');
-    let title = 'Could Not Fetch Data', msg = '', hint = '';
+    let title='Error', msg='', hint='';
 
-    if (err.message === 'NO_KEY') {
-      title = 'API Key Missing';
-      msg = 'Please enter your Twelve Data API key in the banner above.';
-      hint = '→ Get a free key at twelvedata.com/register (30 seconds, no credit card required)';
-    } else if (err.message.includes('Invalid') || err.message.includes('401') || err.message.includes('403')) {
-      title = 'Invalid API Key';
-      msg = 'Your Twelve Data API key was rejected. Please check and re-save it.';
-      hint = '→ Verify your key at twelvedata.com/account/api-keys';
-    } else if (err.message === 'REQUEST_TIMEOUT') {
-      title = 'Request Timed Out';
-      msg = 'The Twelve Data API did not respond within 14 seconds. This is usually a temporary network issue.';
-      hint = '→ Check your internet connection and try again in a moment.';
-    } else if (err.message.includes('429') || err.message.toLowerCase().includes('limit')) {
-      title = 'Rate Limit Reached';
-      msg = 'You\'ve hit the free tier daily limit (800 credits/day). Resets at midnight UTC.';
-      hint = '→ Each analysis uses ~2 credits (quote + time_series). Upgrade at twelvedata.com/pricing';
-    } else if (err.message === 'ZERO_PRICE') {
-      title = 'No Price Data';
-      msg = `"${raw}" returned a zero price. The symbol may not be available in the ${meta.ex} exchange on Twelve Data.`;
-      hint = `→ Try picking from autocomplete. NSE examples: RELIANCE, TCS, SBIN, INFY\n→ US examples: AAPL, TSLA, NVDA`;
-    } else if (err.message === 'NO_HISTORY') {
-      title = 'No Historical Data';
-      msg = `No time series data found for "${raw}" on ${meta.ex}.`;
-      hint = `→ This symbol may not have historical data on the free tier. Try a major index stock.`;
-    } else if (
-      err.message === 'Failed to fetch' ||
-      err.message === 'NetworkError when attempting to fetch resource.' ||
-      err.message === 'Load failed' ||
-      err.message.includes('fetch')
-    ) {
-      title = 'Network / CORS Error';
-      msg = 'The request was blocked — likely a CORS restriction in this sandboxed environment. All three attempts failed (direct + 2 proxies).';
-      hint = '→ SOLUTION: Download the HTML file and host it on Netlify (free, 2 min). See hosting instructions.\n→ Or open the file via a local web server (not file://).\n→ Once hosted on a real domain (netlify.app), all API calls will work perfectly.';
+    if (err.message==='NO_KEY'||err.message.includes('401')) {
+      title='Invalid API Key';
+      msg='Your Anthropic API key was rejected or is missing.';
+      hint='→ Get a key at console.anthropic.com/keys\n→ Make sure it starts with "sk-ant-"';
+    } else if (err.message.includes('429')||err.message.toLowerCase().includes('rate')) {
+      title='Rate Limited';
+      msg='Too many requests. Please wait a moment and try again.';
+      hint='→ The Anthropic API has per-minute rate limits on free/tier-1 accounts.';
+    } else if (err.message.includes('Could not parse')||err.message.includes('zero price')) {
+      title='Data Retrieval Failed';
+      msg=`Claude could not retrieve reliable live data for "${raw}" on ${meta.ex}. This can happen when market data is not available in search results.`;
+      hint='→ Try again — web search results vary\n→ Try a major stock like RELIANCE, TCS, AAPL\n→ Make sure the ticker and exchange are correct';
     } else {
-      msg = `Failed to load "${raw}" (${meta.ex}): ${err.message}`;
-      hint = `→ Check your API key and internet connection.\n→ Status: twelvedata.isitup.cloud`;
+      title='Something Went Wrong';
+      msg=err.message;
+      hint='→ Check your API key and internet connection\n→ Try a different stock\n→ Wait a moment and retry';
     }
 
-    document.getElementById('errTitle').textContent = title;
-    document.getElementById('errMsg').textContent = msg;
-    document.getElementById('errHint').textContent = hint;
-    console.error('[MarketPulse AI]', err);
+    document.getElementById('errTitle').textContent=title;
+    document.getElementById('errMsg').textContent=msg;
+    document.getElementById('errHint').textContent=hint;
+    console.error('[MarketPulse AI]',err);
   }
 }
 
-// ═══════════════════════════════════════════════════════
-// RENDER HELPERS
-// ═══════════════════════════════════════════════════════
-function fp(v, c, dec = 2) {
-  const n = +v;
-  if (!isFinite(n)) return '—';
-  if (n >= 1e9) return c + (n / 1e9).toFixed(2) + 'B';
-  if (n >= 1e6) return c + (n / 1e6).toFixed(2) + 'M';
-  return c + n.toLocaleString('en-IN', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+// ═══════════════════════════════════════════
+// RENDER FUNCTIONS
+// ═══════════════════════════════════════════
+function fp(v,c,dec=2){
+  const n=+v; if(!isFinite(n))return'—';
+  if(n>=1e9)return c+(n/1e9).toFixed(2)+'B';
+  if(n>=1e6)return c+(n/1e6).toFixed(2)+'M';
+  return c+n.toLocaleString('en-IN',{minimumFractionDigits:dec,maximumFractionDigits:dec});
 }
-function fvol(v) {
-  const n = +v;
-  if (n >= 1e7) return (n / 1e7).toFixed(2) + 'Cr';
-  if (n >= 1e6) return (n / 1e6).toFixed(2) + 'M';
-  if (n >= 1e3) return (n / 1e3).toFixed(0) + 'K';
-  return '' + n;
+function fvol(v){
+  const n=+v;
+  if(n>=1e7)return(n/1e7).toFixed(2)+'Cr';
+  if(n>=1e6)return(n/1e6).toFixed(2)+'M';
+  if(n>=1e3)return(n/1e3).toFixed(0)+'K';
+  return''+n;
 }
 
-function renderHeader(m, q) {
-  const price = parseFloat(q.close);
-  const pc    = parseFloat(q.percent_change) || 0;
-  const up    = pc >= 0;
-  const vol   = fvol(q.volume || 0);
-
-  document.getElementById('stkHdr').innerHTML = `
+function renderHeader(d) {
+  const up=d.changePercent>=0, c=d.cur;
+  document.getElementById('stkHdr').innerHTML=`
     <div>
       <div class="tk-row">
-        <span class="tk">${m.t}</span>
-        <span class="ex-badge">${m.ex}</span>
+        <span class="tk">${d.ticker}</span>
+        <span class="ex-badge">${d.exchange}</span>
         <span class="live-pill">● LIVE</span>
       </div>
-      <div class="stk-name">${q.name || m.n}</div>
+      <div class="stk-name">${d.name}</div>
       <div class="meta-row">
-        <div class="mi"><span>SECTOR</span>${m.sec}</div>
-        <div class="mi"><span>PREV CLOSE</span>${fp(q.previous_close, m.cur)}</div>
-        <div class="mi"><span>DAY RANGE</span>${fp(q.low, m.cur)} – ${fp(q.high, m.cur)}</div>
-        <div class="mi"><span>VOLUME</span>${vol}</div>
-        <div class="mi"><span>SOURCE</span>Twelve Data</div>
+        <div class="mi"><span>SECTOR</span>${d.sector}</div>
+        <div class="mi"><span>PREV CLOSE</span>${fp(d.previousClose,c)}</div>
+        <div class="mi"><span>DAY RANGE</span>${fp(d.dayLow,c)} – ${fp(d.dayHigh,c)}</div>
+        <div class="mi"><span>MKT CAP</span>${d.marketCap||'—'}</div>
+        <div class="mi"><span>SOURCE</span>Claude Web Search</div>
       </div>
     </div>
     <div class="price-right">
-      <div class="price-big" style="color:${up ? 'var(--accent)' : 'var(--red)'}">
-        ${fp(price, m.cur)}
-      </div>
-      <div class="chg ${up ? 'up' : 'dn'}">
-        ${up ? '▲ +' : '▼ '}${Math.abs(pc).toFixed(2)}% today
-      </div>
+      <div class="price-big" style="color:${up?'var(--accent)':'var(--red)'}">${fp(d.currentPrice,c)}</div>
+      <div class="chg ${up?'up':'dn'}">${up?'▲ +':'▼ '}${Math.abs(d.changePercent||0).toFixed(2)}% today</div>
     </div>`;
 }
 
-function renderStats(m, q, candles, ind) {
-  const c = m.cur;
-  const h52 = Math.max(...candles.map(d => d.high));
-  const l52 = Math.min(...candles.map(d => d.low));
-  const price = parseFloat(q.close);
-  const avgVol = candles.slice(-30).reduce((a, d) => a + d.volume, 0) / Math.min(candles.length, 30);
-
-  document.getElementById('statsGrid').innerHTML = `
-    <div class="sc">
-      <div class="sc-lbl">52-WEEK HIGH</div>
-      <div class="sc-val" style="color:var(--accent)">${fp(h52, c)}</div>
-      <div class="sc-sub">${(((h52 - price) / price) * 100).toFixed(1)}% above current</div>
-    </div>
-    <div class="sc">
-      <div class="sc-lbl">52-WEEK LOW</div>
-      <div class="sc-val" style="color:var(--red)">${fp(l52, c)}</div>
-      <div class="sc-sub">${(((price - l52) / l52) * 100).toFixed(1)}% above low</div>
-    </div>
-    <div class="sc">
-      <div class="sc-lbl">RSI (14)</div>
-      <div class="sc-val" style="color:${ind.rsi > 70 ? 'var(--red)' : ind.rsi < 30 ? 'var(--accent)' : 'var(--warn)'}">
-        ${ind.rsi ?? '—'}
-      </div>
-      <div class="sc-sub">${ind.rsi > 70 ? 'Overbought' : ind.rsi < 30 ? 'Oversold' : 'Neutral zone'}</div>
-    </div>
-    <div class="sc">
-      <div class="sc-lbl">30D AVG VOLUME</div>
+function renderStats(d,candles,ind) {
+  const c=d.cur;
+  const h52=d.weekHigh52||Math.max(...candles.map(x=>x.high));
+  const l52=d.weekLow52||Math.min(...candles.map(x=>x.low));
+  const avgVol=candles.slice(-30).reduce((a,x)=>a+x.volume,0)/Math.min(candles.length,30);
+  document.getElementById('statsGrid').innerHTML=`
+    <div class="sc"><div class="sc-lbl">52-WEEK HIGH</div>
+      <div class="sc-val" style="color:var(--accent)">${fp(h52,c)}</div>
+      <div class="sc-sub">${(((h52-d.currentPrice)/d.currentPrice)*100).toFixed(1)}% above current</div></div>
+    <div class="sc"><div class="sc-lbl">52-WEEK LOW</div>
+      <div class="sc-val" style="color:var(--red)">${fp(l52,c)}</div>
+      <div class="sc-sub">${(((d.currentPrice-l52)/l52)*100).toFixed(1)}% above low</div></div>
+    <div class="sc"><div class="sc-lbl">RSI (14)</div>
+      <div class="sc-val" style="color:${ind.rsi>70?'var(--red)':ind.rsi<30?'var(--accent)':'var(--warn)'}">${ind.rsi??'—'}</div>
+      <div class="sc-sub">${ind.rsi>70?'Overbought':ind.rsi<30?'Oversold':'Neutral zone'}</div></div>
+    <div class="sc"><div class="sc-lbl">30D AVG VOLUME</div>
       <div class="sc-val">${fvol(Math.round(avgVol))}</div>
-      <div class="sc-sub">Annual vol: ${ind.annVol}%</div>
-    </div>`;
+      <div class="sc-sub">Annual volatility: ${ind.annVol}%</div></div>`;
 }
 
-function renderPredictions(preds, m, curPrice) {
-  const c = m.cur;
-  const cls = ['d15', 'd30', 'd90', 'd365'];
-  const lbl = ['15 DAYS', '30 DAYS', '90 DAYS', '365 DAYS'];
-  const notes = [
-    'Short-term momentum. Derived from RSI, MACD & 10-day trend from live Twelve Data candles.',
-    'Swing trade horizon. SMA crossover continuation + log-return drift from real OHLCV data.',
-    'Medium-term projection. Volatility-adjusted drift from 1-year of live daily candles.',
-    'Long-term forecast. Annual σ & μ computed from real Twelve Data history. Wide uncertainty.'
-  ];
-  document.getElementById('predGrid').innerHTML = preds.map((p, i) => {
-    const up = p.change >= 0;
-    return `<div class="pc ${cls[i]}">
+function renderPredictions(preds,d) {
+  const c=d.cur;
+  const cls=['d15','d30','d90','d365'],lbl=['15 DAYS','30 DAYS','90 DAYS','365 DAYS'];
+  const notes=['Short-term momentum. Based on current RSI, MACD and 10-day trend from live data.',
+    'Swing trade horizon. SMA crossovers and log-return drift from real historical prices.',
+    'Medium-term. Volatility-adjusted drift from 1 year of real OHLCV data.',
+    'Long-term. Annual σ & μ from real data. High uncertainty, treat as directional guide.'];
+  document.getElementById('predGrid').innerHTML=preds.map((p,i)=>{
+    const up=p.change>=0;
+    return`<div class="pc ${cls[i]}">
       <div class="ph"><span class="pd"></span>${lbl[i]}</div>
-      <div class="pp" style="color:${up ? 'var(--accent)' : 'var(--red)'}">${fp(p.price, c)}</div>
-      <div class="pct ${up ? 'up' : 'dn'}">${up ? '▲ +' : '▼ '}${p.change}%</div>
-      <div>
-        <div class="cf-lbl"><span>CONFIDENCE</span><span>${p.conf}%</span></div>
-        <div class="cf-bar"><div class="cf-fill" style="width:${p.conf}%"></div></div>
-      </div>
+      <div class="pp" style="color:${up?'var(--accent)':'var(--red)'}">${fp(p.price,c)}</div>
+      <div class="pct ${up?'up':'dn'}">${up?'▲ +':'▼ '}${p.change}%</div>
+      <div><div class="cf-lbl"><span>CONFIDENCE</span><span>${p.conf}%</span></div>
+      <div class="cf-bar"><div class="cf-fill" style="width:${p.conf}%"></div></div></div>
       <div class="pnote">${notes[i]}</div>
     </div>`;
   }).join('');
 }
 
-function renderChart(candles, preds, m, days) {
-  const data   = days === 9999 ? candles : candles.slice(-days);
-  const labels = data.map(d => d.date);
-  const prices = data.map(d => d.close);
-  const s20    = smaArr(prices, Math.min(20, prices.length));
+function renderChart(candles,preds,d,days) {
+  const data=days===9999?candles:candles.slice(-days);
+  const labels=data.map(x=>x.date), prices=data.map(x=>x.close);
+  const s20=smaArr(prices,Math.min(20,prices.length));
+  const projDate=new Date(labels[labels.length-1]);
+  projDate.setDate(projDate.getDate()+preds[0].days);
+  const allL=[...labels,projDate.toISOString().slice(0,10)];
+  const allP=[...prices,null];
+  const proj=[...Array(prices.length-1).fill(null),prices[prices.length-1],preds[0].price];
 
-  // Forecast dot for nearest prediction
-  const projDate = new Date(labels[labels.length - 1]);
-  projDate.setDate(projDate.getDate() + preds[0].days);
-  const allL   = [...labels, projDate.toISOString().slice(0, 10)];
-  const allP   = [...prices, null];
-  const proj   = [...Array(prices.length - 1).fill(null), prices[prices.length - 1], preds[0].price];
-
-  if (G.chart) G.chart.destroy();
-  const ctx  = document.getElementById('chart').getContext('2d');
-  const up   = prices[prices.length - 1] >= prices[0];
-  const pc   = up ? '#00e5a0' : '#ff4757';
-  const grad = ctx.createLinearGradient(0, 0, 0, 290);
-  grad.addColorStop(0, up ? 'rgba(0,229,160,0.18)' : 'rgba(255,71,87,0.18)');
-  grad.addColorStop(1, 'rgba(0,0,0,0)');
-
-  G.chart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: allL,
-      datasets: [
-        { label: 'Price', data: allP, borderColor: pc, backgroundColor: grad, borderWidth: 2, pointRadius: 0, tension: 0.3, fill: true },
-        { label: 'SMA 20', data: [...s20, null], borderColor: 'rgba(0,184,255,0.6)', borderWidth: 1.5, borderDash: [4, 4], pointRadius: 0, tension: 0.3, fill: false },
-        { label: `Forecast ${preds[0].days}d`, data: proj, borderColor: 'rgba(255,215,61,0.9)', borderWidth: 2, borderDash: [6, 3],
-          pointRadius: [...Array(prices.length - 1).fill(0), 0, 7],
-          pointBackgroundColor: '#ffd93d', tension: 0.1, fill: false }
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: { labels: { color: '#5a6a7a', font: { family: 'JetBrains Mono', size: 11 }, boxWidth: 16 } },
-        tooltip: {
-          backgroundColor: '#0d1219', borderColor: 'rgba(255,255,255,0.08)', borderWidth: 1,
-          titleColor: '#8a9aaa', bodyColor: '#e8edf3',
-          titleFont: { family: 'JetBrains Mono', size: 11 }, bodyFont: { family: 'JetBrains Mono', size: 12 },
-          callbacks: { label: ctx => ctx.parsed.y != null ? ` ${m.cur}${ctx.parsed.y.toFixed(2)}` : null }
-        }
+  if(G.chart)G.chart.destroy();
+  const ctx=document.getElementById('chart').getContext('2d');
+  const up=prices[prices.length-1]>=prices[0], pc=up?'#00e5a0':'#ff4757';
+  const grad=ctx.createLinearGradient(0,0,0,290);
+  grad.addColorStop(0,up?'rgba(0,229,160,0.18)':'rgba(255,71,87,0.18)');
+  grad.addColorStop(1,'rgba(0,0,0,0)');
+  G.chart=new Chart(ctx,{
+    type:'line',
+    data:{labels:allL,datasets:[
+      {label:'Price',data:allP,borderColor:pc,backgroundColor:grad,borderWidth:2,pointRadius:0,tension:0.3,fill:true},
+      {label:'SMA 20',data:[...s20,null],borderColor:'rgba(0,184,255,0.6)',borderWidth:1.5,borderDash:[4,4],pointRadius:0,tension:0.3,fill:false},
+      {label:`Forecast ${preds[0].days}d`,data:proj,borderColor:'rgba(255,215,61,0.9)',borderWidth:2,borderDash:[6,3],
+        pointRadius:[...Array(prices.length-1).fill(0),0,7],pointBackgroundColor:'#ffd93d',tension:0.1,fill:false}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+      plugins:{
+        legend:{labels:{color:'#5a6a7a',font:{family:'JetBrains Mono',size:11},boxWidth:16}},
+        tooltip:{backgroundColor:'#0d1219',borderColor:'rgba(255,255,255,0.08)',borderWidth:1,
+          titleColor:'#8a9aaa',bodyColor:'#e8edf3',
+          titleFont:{family:'JetBrains Mono',size:11},bodyFont:{family:'JetBrains Mono',size:12},
+          callbacks:{label:c=>c.parsed.y!=null?` ${d.cur}${c.parsed.y.toFixed(2)}`:null}}
       },
-      scales: {
-        x: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#5a6a7a', font: { family: 'JetBrains Mono', size: 10 }, maxTicksLimit: 8, maxRotation: 0 } },
-        y: { position: 'right', grid: { color: 'rgba(255,255,255,0.03)' },
-          ticks: { color: '#5a6a7a', font: { family: 'JetBrains Mono', size: 10 },
-            callback: v => `${m.cur}${v.toFixed(m.cur === '₹' ? 0 : 2)}` } }
-      }
-    }
+      scales:{
+        x:{grid:{color:'rgba(255,255,255,0.03)'},ticks:{color:'#5a6a7a',font:{family:'JetBrains Mono',size:10},maxTicksLimit:8,maxRotation:0}},
+        y:{position:'right',grid:{color:'rgba(255,255,255,0.03)'},ticks:{color:'#5a6a7a',font:{family:'JetBrains Mono',size:10},
+          callback:v=>`${d.cur}${v.toFixed(d.cur==='₹'?0:2)}`}}
+      }}
   });
-  document.getElementById('chartLbl').textContent =
-    `${m.t} · ${days === 9999 ? 'Full Year' : days + ' Days'} · Source: Twelve Data`;
+  document.getElementById('chartLbl').textContent=`${d.ticker} · ${days===9999?'1 Year':days+' Days'} · via Claude Web Search`;
 }
 
-function setRange(days, btn) {
-  document.querySelectorAll('.rb').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-  if (G.candles.length) renderChart(G.candles, G.preds, G.meta, days);
+function setRange(days,btn){
+  document.querySelectorAll('.rb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
+  if(G.candles.length)renderChart(G.candles,G.preds,G.stockData,days);
 }
 
-function renderAnalysis(a, ind, m) {
-  const c  = m.cur;
-  const sc = a.sentiment === 'BULLISH' ? 'var(--accent)' : a.sentiment === 'BEARISH' ? 'var(--red)' : 'var(--warn)';
-  const se = a.sentiment === 'BULLISH' ? '🐂' : a.sentiment === 'BEARISH' ? '🐻' : '⚖️';
-
-  document.getElementById('aiCard').innerHTML = `
+function renderAnalysis(a,ind,d) {
+  const c=d.cur;
+  const sc=a.sentiment==='BULLISH'?'var(--accent)':a.sentiment==='BEARISH'?'var(--red)':'var(--warn)';
+  const se=a.sentiment==='BULLISH'?'🐂':a.sentiment==='BEARISH'?'🐻':'⚖️';
+  document.getElementById('aiCard').innerHTML=`
     <div class="ai-hdr">
       <div class="ai-pill">⚡ AI ANALYSIS</div>
       <div class="ai-title">Deep Market Intelligence</div>
@@ -1059,20 +872,17 @@ function renderAnalysis(a, ind, m) {
       <div class="ab-txt" style="margin-bottom:14px">${a.prediction_rationale}</div>
       <div class="ab-t">📍 Key Price Levels</div>
       <div class="ab-txt" style="margin-bottom:14px">${a.key_levels}</div>
-      <div class="ab-t" style="display:flex;align-items:center;gap:8px">
-        📐 Live Technical Dashboard
-        <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--accent2);font-weight:400">computed from real Twelve Data candles</span>
-      </div>
+      <div class="ab-t">📐 Live Technical Dashboard</div>
       <div class="ind-grid">
-        <div class="ind"><span class="i-lbl">RSI (14)</span><span class="i-val ${ind.rsi > 70 ? 'bear' : ind.rsi < 30 ? 'bull' : 'neut'}">${ind.rsi ?? '—'}</span></div>
-        <div class="ind"><span class="i-lbl">MACD</span><span class="i-val ${ind.macd > 0 ? 'bull' : 'bear'}">${ind.macd > 0 ? '+' : ''}${ind.macd ?? '—'}</span></div>
-        <div class="ind"><span class="i-lbl">SMA 20</span><span class="i-val neut">${ind.sma20 ? c + ind.sma20 : '—'}</span></div>
-        <div class="ind"><span class="i-lbl">SMA 50</span><span class="i-val neut">${ind.sma50 ? c + ind.sma50 : '—'}</span></div>
-        <div class="ind"><span class="i-lbl">BOLL UPPER</span><span class="i-val bear">${ind.boll?.upper ? c + ind.boll.upper : '—'}</span></div>
-        <div class="ind"><span class="i-lbl">BOLL LOWER</span><span class="i-val bull">${ind.boll?.lower ? c + ind.boll.lower : '—'}</span></div>
+        <div class="ind"><span class="i-lbl">RSI (14)</span><span class="i-val ${ind.rsi>70?'bear':ind.rsi<30?'bull':'neut'}">${ind.rsi??'—'}</span></div>
+        <div class="ind"><span class="i-lbl">MACD</span><span class="i-val ${ind.macd>0?'bull':'bear'}">${ind.macd>0?'+':''}${ind.macd??'—'}</span></div>
+        <div class="ind"><span class="i-lbl">SMA 20</span><span class="i-val neut">${ind.sma20?c+ind.sma20:'—'}</span></div>
+        <div class="ind"><span class="i-lbl">SMA 50</span><span class="i-val neut">${ind.sma50?c+ind.sma50:'—'}</span></div>
+        <div class="ind"><span class="i-lbl">BOLL UPPER</span><span class="i-val bear">${ind.boll?.upper?c+ind.boll.upper:'—'}</span></div>
+        <div class="ind"><span class="i-lbl">BOLL LOWER</span><span class="i-val bull">${ind.boll?.lower?c+ind.boll.lower:'—'}</span></div>
         <div class="ind"><span class="i-lbl">ANNUAL VOL</span><span class="i-val neut">${ind.annVol}%</span></div>
-        <div class="ind"><span class="i-lbl">TREND SCORE</span><span class="i-val ${ind.trend > 0.1 ? 'bull' : ind.trend < -0.1 ? 'bear' : 'neut'}">${ind.trend}</span></div>
-        <div class="ind"><span class="i-lbl">SIGNAL</span><span class="i-val ${a.sentiment === 'BULLISH' ? 'bull' : a.sentiment === 'BEARISH' ? 'bear' : 'neut'}">${a.sentiment}</span></div>
+        <div class="ind"><span class="i-lbl">TREND SCORE</span><span class="i-val ${ind.trend>0.1?'bull':ind.trend<-0.1?'bear':'neut'}">${ind.trend}</span></div>
+        <div class="ind"><span class="i-lbl">SIGNAL</span><span class="i-val ${a.sentiment==='BULLISH'?'bull':a.sentiment==='BEARISH'?'bear':'neut'}">${a.sentiment}</span></div>
       </div>
     </div>`;
 }
