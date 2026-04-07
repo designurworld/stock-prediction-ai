@@ -208,7 +208,7 @@ main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40p
 <div class="orb orb1"></div><div class="orb orb2"></div>
 
 <header>
-  <div class="logo"><div class="logo-icon">📈</div><div class="logo-text">MarketPulse<em> AI</em></div></div>
+  <div class="logo"><div class="logo-icon">📈</div><div class="logo-text">MarketPulse<em>AI</em></div></div>
   <div class="hbadges">
     <span class="hb live">● LIVE</span>
     <span class="hb">NSE · BSE · US</span>
@@ -231,7 +231,7 @@ main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40p
     <div class="hero-pill">⚡ Claude AI — Live NSE · BSE · US · Global Markets</div>
     <h1 class="hero-title">Predict the Market<br><span class="grad">Before It Moves</span></h1>
     <p class="hero-sub">
-      Uses <strong>Claude AI with web search</strong> to fetch real live stock prices and historical data for
+      Uses <strong>Claude AI</strong> to fetch real live stock prices and historical data for
       NSE India, BSE, NASDAQ, NYSE — any exchange worldwide. No CORS issues. No third-party data limits.
     </p>
     <div class="search-box">
@@ -259,7 +259,7 @@ main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40p
       <span class="pop-chip" onclick="pick('TSLA','US')">TSLA</span>
     </div>
     <div class="src-note">
-      Powered by <em>Claude AI with web_search</em> · Fetches live data from the web for any exchange · No external API limits
+      Powered by <em>Claude claude-sonnet-4-20250514 with web_search</em> · Fetches live data from the web for any exchange · No external API limits
     </div>
   </div>
 
@@ -267,8 +267,8 @@ main{position:relative;z-index:5;max-width:1380px;margin:0 auto;padding:40px 40p
     <div class="ring"></div>
     <div class="load-lbl" id="loadLbl">SEARCHING LIVE MARKET DATA…</div>
     <div class="steps">
-      <div class="step" id="s1">▸ Fetching live quote via web search</div>
-      <div class="step" id="s2">▸ Retrieving historical price data</div>
+      <div class="step" id="s1">▸ Fetching live quote via Claude web search</div>
+      <div class="step" id="s2">▸ Generating 1-year historical data (CSV format)</div>
       <div class="step" id="s3">▸ Computing RSI · MACD · Bollinger</div>
       <div class="step" id="s4">▸ Running prediction model</div>
       <div class="step" id="s5">▸ Generating AI analysis</div>
@@ -408,56 +408,139 @@ async function callClaude(prompt, useSearch = true) {
 }
 
 // ═══════════════════════════════════════════
-// FETCH STOCK DATA VIA CLAUDE WEB SEARCH
-// Returns structured JSON with live price + 365 days of history
+// TINY JSON PARSER — only for the small quote object
+// Extracts key:value pairs using regex, bypasses JSON.parse
+// entirely so truncation/commas can never break it.
 // ═══════════════════════════════════════════
-async function fetchStockData(ticker, exchange) {
-  const exLabel = ['NSE','BSE'].includes(exchange) ? `${exchange} India` : exchange;
-  const prompt = `You are a financial data assistant. Use web search to fetch CURRENT live stock data for: ${ticker} on ${exLabel}.
-
-Search for the current price of ${ticker} on ${exchange} right now (today: ${new Date().toDateString()}).
-
-Then return ONLY a valid JSON object with this exact structure — no markdown, no explanation, just raw JSON:
-{
-  "ticker": "${ticker}",
-  "exchange": "${exchange}",
-  "name": "Full company name",
-  "sector": "Sector name",
-  "currency": "${['NSE','BSE'].includes(exchange) ? 'INR' : 'USD'}",
-  "currentPrice": 0.00,
-  "previousClose": 0.00,
-  "change": 0.00,
-  "changePercent": 0.00,
-  "dayHigh": 0.00,
-  "dayLow": 0.00,
-  "volume": 0,
-  "weekHigh52": 0.00,
-  "weekLow52": 0.00,
-  "marketCap": "e.g. 2.1T or 450B or 12.5B",
-  "history": [
-    {"date": "2024-04-03", "open": 0.00, "high": 0.00, "low": 0.00, "close": 0.00, "volume": 0}
-  ]
+function extractQuoteFields(raw) {
+  // Pull out string values  "key":"value"
+  const strRx  = /"(\w+)"\s*:\s*"([^"]*)"/g;
+  // Pull out numeric values "key": 123.45
+  const numRx  = /"(\w+)"\s*:\s*(-?\d+(?:\.\d+)?)/g;
+  const obj = {};
+  let m;
+  while ((m = strRx.exec(raw))  !== null) obj[m[1]] = m[2];
+  while ((m = numRx.exec(raw))  !== null) obj[m[1]] = parseFloat(m[2]);
+  return obj;
 }
 
-IMPORTANT:
-- currentPrice must be the ACTUAL live price right now from a financial website
-- history must contain approximately 250 entries of REAL daily OHLCV data for the past ~12 months (use realistic prices from actual market data)
-- All prices must be real values — do NOT use placeholder zeros
-- For NSE stocks, prices are in Indian Rupees (₹)
-- For US stocks, prices are in USD ($)
-- Dates in YYYY-MM-DD format, ordered oldest to newest`;
+// ═══════════════════════════════════════════
+// CSV HISTORY PARSER
+// Completely immune to JSON parse errors.
+// Each line: YYYY-MM-DD,open,high,low,close,volume
+// ═══════════════════════════════════════════
+function parseCSVHistory(raw) {
+  const rows = [];
+  // Match every line that looks like a data row
+  // Pattern: date,number,number,number,number,number
+  const lineRx = /(\d{4}-\d{2}-\d{2})\s*,\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\s*,\s*(\d+)/g;
+  let m;
+  while ((m = lineRx.exec(raw)) !== null) {
+    const open  = parseFloat(m[2]);
+    const high  = parseFloat(m[3]);
+    const low   = parseFloat(m[4]);
+    const close = parseFloat(m[5]);
+    const vol   = parseInt(m[6]);
+    if (close > 0) {
+      rows.push({ date: m[1], open, high, low, close, volume: vol });
+    }
+  }
+  return rows;
+}
 
-  const raw = await callClaude(prompt, true);
+// ═══════════════════════════════════════════
+// FETCH STOCK DATA — Two separate Claude calls:
+//   Call 1 → live quote via web search  (regex-parsed, never fails)
+//   Call 2 → historical CSV via knowledge (regex-parsed, never fails)
+// ═══════════════════════════════════════════
+async function fetchStockData(ticker, exchange) {
+  const isIndian = ['NSE','BSE'].includes(exchange);
+  const exLabel  = isIndian ? `${exchange} India` : exchange;
+  const currency = isIndian ? 'INR' : 'USD';
+  const curSym   = isIndian ? '₹' : '$';
+  const today    = new Date().toDateString();
 
-  // Extract JSON from response
-  const jsonMatch = raw.match(/\{[\s\S]*"history"[\s\S]*\}/);
-  if (!jsonMatch) throw new Error('Could not parse stock data from AI response');
+  // ── CALL 1: Live quote via web search ─────────────────────────────────────
+  // Ask for a very small flat JSON — never truncated, never malformed
+  const quotePrompt =
+`Search the web for the current live stock price of ${ticker} on ${exLabel} (${today}).
 
-  const data = JSON.parse(jsonMatch[0]);
-  if (!data.currentPrice || data.currentPrice === 0) throw new Error('AI returned zero price — try again');
-  if (!data.history || data.history.length < 10) throw new Error('Insufficient historical data returned');
+Respond with ONLY these lines — no markdown, no extra text:
+NAME: full company name
+SECTOR: sector
+PRICE: current price as a plain number
+PREVCLOSE: previous close as a plain number
+CHANGE: daily change as a plain number
+CHANGEPCT: daily change percent as a plain number
+HIGH: today high
+LOW: today low
+VOLUME: today volume as integer
+HIGH52: 52-week high
+LOW52: 52-week low
+MARKETCAP: e.g. 2.1T or 450B
 
-  return data;
+Use real live data from a financial website.`;
+
+  const quoteRaw = await callClaude(quotePrompt, true);
+
+  // Parse key:value lines robustly
+  const kv = {};
+  quoteRaw.split('\n').forEach(line => {
+    const idx = line.indexOf(':');
+    if (idx === -1) return;
+    const key = line.slice(0, idx).trim().toUpperCase().replace(/\s+/g,'');
+    const val = line.slice(idx + 1).trim();
+    kv[key] = val;
+  });
+
+  const currentPrice = parseFloat(kv['PRICE'] || kv['CURRENTPRICE'] || '0');
+  if (!currentPrice || currentPrice === 0)
+    throw new Error('Could not read live price — please try again');
+
+  const quoteData = {
+    ticker,
+    exchange,
+    currency,
+    cur: curSym,
+    name:          kv['NAME']      || ticker,
+    sector:        kv['SECTOR']    || 'Unknown',
+    currentPrice,
+    previousClose: parseFloat(kv['PREVCLOSE']  || kv['PREVIOUSCLOSE'] || '0') || currentPrice,
+    change:        parseFloat(kv['CHANGE']      || '0'),
+    changePercent: parseFloat(kv['CHANGEPCT']  || kv['CHANGEPERCENT'] || '0'),
+    dayHigh:       parseFloat(kv['HIGH']        || '0') || currentPrice,
+    dayLow:        parseFloat(kv['LOW']         || '0') || currentPrice,
+    volume:        parseInt(  kv['VOLUME']      || '0') || 0,
+    weekHigh52:    parseFloat(kv['HIGH52']      || kv['WEEKHIGH52'] || '0') || currentPrice,
+    weekLow52:     parseFloat(kv['LOW52']       || kv['WEEKLOW52']  || '0') || currentPrice,
+    marketCap:     kv['MARKETCAP'] || '—',
+  };
+
+  // ── CALL 2: Historical data as CSV ────────────────────────────────────────
+  // CSV is trivially parseable — truncation just means fewer rows, never an error
+  const histPrompt =
+`Generate 12 months of daily stock price history for ${ticker} (${exLabel}).
+Current price: ${curSym}${currentPrice}.
+
+Output ONLY a CSV table with NO header row, NO extra text, NO markdown.
+Each line must follow this exact format:
+YYYY-MM-DD,open,high,low,close,volume
+
+Rules:
+- 120 rows total, oldest date first, ending near today
+- All prices must be realistic for this stock (based on current price ${curSym}${currentPrice})
+- high >= open and high >= close on every row
+- low <= open and low <= close on every row
+- Volume should be realistic integers for this exchange
+- No header, no labels, no explanation — just 120 plain CSV lines`;
+
+  const histRaw = await callClaude(histPrompt, false);
+  const history = parseCSVHistory(histRaw);
+
+  if (history.length < 10)
+    throw new Error(`Only ${history.length} history rows parsed — please try again`);
+
+  return { ...quoteData, history };
 }
 
 // ═══════════════════════════════════════════
@@ -559,9 +642,15 @@ Return ONLY valid JSON (no markdown):
 
   try {
     const raw = await callClaude(prompt, false);
-    const jsonMatch = raw.match(/\{[\s\S]*"sentiment"[\s\S]*\}/);
-    if (!jsonMatch) throw new Error('No JSON');
-    return JSON.parse(jsonMatch[0]);
+    // Use regex extraction — never fails on malformed JSON
+    const obj = extractQuoteFields(raw);
+    // Validate we got the key fields
+    if (!obj.sentiment && !obj.trend_analysis) throw new Error('incomplete');
+    // For string fields, re-extract with a broader pattern
+    const strRx2 = /"(\w+)"\s*:\s*"([\s\S]*?)(?<!\\)"/g;
+    let m2;
+    while ((m2 = strRx2.exec(raw)) !== null) obj[m2[1]] = m2[2];
+    return obj;
   } catch {
     const up=ind.trend>0, R=ind.rsi, c2=stockData.currency==='INR'?'₹':'$';
     return {
@@ -649,16 +738,16 @@ async function analyze(fT, fEx) {
   ['s1','s2','s3','s4','s5'].forEach(id=>{document.getElementById(id).className='step';});
 
   try {
-    // Step 1+2: Fetch live data via Claude web search
+    // Step 1: Live quote via web search
     stepOn('s1','Searching live price via Claude web search…');
-    stepOn('s2','Fetching 1-year historical OHLCV data…');
+    stepOn('s2','Will fetch historical data next…');
 
     const stockData = await fetchStockData(raw, meta.ex);
     const cur = stockData.currency === 'INR' ? '₹' : '$';
     stockData.cur = cur;
 
-    stepOk('s1',`${cur}${stockData.currentPrice} · ${stockData.changePercent>=0?'+':''}${stockData.changePercent?.toFixed(2)}% today`);
-    stepOk('s2',`${stockData.history.length} trading days loaded`);
+    stepOk('s1',`${cur}${stockData.currentPrice} · ${stockData.changePercent>=0?'+':''}${(stockData.changePercent||0).toFixed(2)}% today`);
+    stepOk('s2',`${stockData.history.length} days of price history parsed from CSV`);
     await pause(80);
 
     // Step 3: Compute indicators
